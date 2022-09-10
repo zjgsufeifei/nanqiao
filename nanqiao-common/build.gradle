@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("mysql:mysql-connector-java:5.1.48")
+    compile("org.springframework.boot:spring-boot-starter-data-jdbc:2.2.2.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.mybatis:mybatis-spring:2.0.2")
+}
+
+test {
+    useJUnitPlatform()
+}

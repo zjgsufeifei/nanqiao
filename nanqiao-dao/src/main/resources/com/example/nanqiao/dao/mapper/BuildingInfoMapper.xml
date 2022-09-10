@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.nanqiao.dao.mapper.BuildingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.nanqiao.dao.entity.BuildingInfoDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="building_name" jdbcType="VARCHAR" property="buildingName" />
+    <result column="building_detail" jdbcType="VARCHAR" property="buildingDetail" />
+    <result column="grid_id" jdbcType="INTEGER" property="gridId" />
+    <result column="grid_name" jdbcType="VARCHAR" property="gridName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, building_name, building_detail, grid_id, grid_name
+  </sql>
+  <select id="selectByExample" parameterType="com.example.nanqiao.dao.entity.BuildingInfoDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from building_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.BuildingInfoDO" useGeneratedKeys="true">
+    insert into building_info (building_name, building_detail, grid_id, 
+      grid_name)
+    values (#{buildingName,jdbcType=VARCHAR}, #{buildingDetail,jdbcType=VARCHAR}, #{gridId,jdbcType=INTEGER}, 
+      #{gridName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.BuildingInfoDO" useGeneratedKeys="true">
+    insert into building_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="buildingName != null">
+        building_name,
+      </if>
+      <if test="buildingDetail != null">
+        building_detail,
+      </if>
+      <if test="gridId != null">
+        grid_id,
+      </if>
+      <if test="gridName != null">
+        grid_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="buildingName != null">
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingDetail != null">
+        #{buildingDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="gridId != null">
+        #{gridId,jdbcType=INTEGER},
+      </if>
+      <if test="gridName != null">
+        #{gridName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.nanqiao.dao.entity.BuildingInfoDOExample" resultType="java.lang.Long">
+    select count(*) from building_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update building_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.buildingName != null">
+        building_name = #{record.buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingDetail != null">
+        building_detail = #{record.buildingDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gridId != null">
+        grid_id = #{record.gridId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gridName != null">
+        grid_name = #{record.gridName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update building_info
+    set id = #{record.id,jdbcType=INTEGER},
+      building_name = #{record.buildingName,jdbcType=VARCHAR},
+      building_detail = #{record.buildingDetail,jdbcType=VARCHAR},
+      grid_id = #{record.gridId,jdbcType=INTEGER},
+      grid_name = #{record.gridName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.example.nanqiao.dao.entity.BuildingInfoDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from building_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
