@@ -3,7 +3,7 @@ package com.example.nanqiao.common.error;
 import java.io.Serializable;
 
 /**
- * @Author: haiyi
+ * @Author: coco
  * @Date: 2022/9/10
  **/
 public class ErrorCode implements Serializable {
