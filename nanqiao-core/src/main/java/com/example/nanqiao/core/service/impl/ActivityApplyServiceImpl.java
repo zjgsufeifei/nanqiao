@@ -14,6 +14,6 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
     @Override
     public void createApply(ApplyCreateRequest request) {
         MobileUtils.checkMobile(request.getPhone());
-        
+
     }
 }
