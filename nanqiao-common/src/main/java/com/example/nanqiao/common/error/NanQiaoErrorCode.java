@@ -36,9 +36,21 @@ public enum NanQiaoErrorCode {
      * 操作过于频繁
      */
     OPERATE_TOO_FREQUENT(300018, "操作过于频繁，请稍后再试"),
-    ;
 
     ////////////////////////////////////////////////// 公共业务异常310000~399999/////////////////////////////////////////
+    /**
+     * 活动还未开始
+     */
+    ACTIVITY_NOT_START(310000, "活动还未开始"),
+    /**
+     * 活动已结束
+     */
+    ACTIVITY_ENDED(310001, "活动已结束"),
+    /**
+     * 已报名过该活动
+     */
+    ALREADY_APPLY_ACTIVITY(310002, "已报名过该活动，不能重复报名"),
+    ;
 
 
     private final String description;

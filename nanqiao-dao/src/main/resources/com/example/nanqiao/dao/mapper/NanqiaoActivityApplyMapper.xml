@@ -7,7 +7,7 @@
     <result column="activity_id" jdbcType="BIGINT" property="activityId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="age" jdbcType="TINYINT" property="age" />
+    <result column="age" jdbcType="INTEGER" property="age" />
     <result column="number" jdbcType="INTEGER" property="number" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="apply_status" jdbcType="INTEGER" property="applyStatus" />
@@ -97,7 +97,7 @@
       email, apply_status, version, 
       gmt_create, gmt_modified)
     values (#{openId,jdbcType=VARCHAR}, #{activityId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT}, #{number,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
       #{email,jdbcType=VARCHAR}, #{applyStatus,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
@@ -152,7 +152,7 @@
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
-        #{age,jdbcType=TINYINT},
+        #{age,jdbcType=INTEGER},
       </if>
       <if test="number != null">
         #{number,jdbcType=INTEGER},
@@ -199,7 +199,7 @@
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.age != null">
-        age = #{record.age,jdbcType=TINYINT},
+        age = #{record.age,jdbcType=INTEGER},
       </if>
       <if test="record.number != null">
         number = #{record.number,jdbcType=INTEGER},
@@ -231,7 +231,7 @@
       activity_id = #{record.activityId,jdbcType=BIGINT},
       user_name = #{record.userName,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      age = #{record.age,jdbcType=TINYINT},
+      age = #{record.age,jdbcType=INTEGER},
       number = #{record.number,jdbcType=INTEGER},
       email = #{record.email,jdbcType=VARCHAR},
       apply_status = #{record.applyStatus,jdbcType=INTEGER},

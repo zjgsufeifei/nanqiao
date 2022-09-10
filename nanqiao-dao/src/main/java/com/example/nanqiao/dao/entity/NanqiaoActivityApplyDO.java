@@ -14,7 +14,7 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     private String phone;
 
-    private Byte age;
+    private Integer age;
 
     private Integer number;
 
@@ -70,11 +70,11 @@ public class NanqiaoActivityApplyDO implements Serializable {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Byte getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(Byte age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
