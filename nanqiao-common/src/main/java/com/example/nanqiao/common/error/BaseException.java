@@ -1,9 +1,12 @@
 package com.example.nanqiao.common.error;
 
+import lombok.Data;
+
 /**
  * @Author: coco
  * @Date: 2022/9/10
  **/
+@Data
 public class BaseException extends RuntimeException{
     private static final long serialVersionUID = -238809961561154591L;
     private Integer code;
