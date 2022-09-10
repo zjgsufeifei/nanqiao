@@ -49,8 +49,8 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table tableName="building_info" mapperName="BuildingInfoMapper"
-               domainObjectName="BuildingInfoDO"
+        <table tableName="nanqiao_activity_apply" mapperName="NanqiaoActivityApplyMapper"
+               domainObjectName="NanqiaoActivityApplyDO"
                enableInsert="true"
                enableSelectByExample="true"
                enableCountByExample="true"
