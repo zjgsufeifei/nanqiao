@@ -5,7 +5,7 @@ import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 import java.util.List;
 
 /**
- * @Author: haiyi
+ * @Author: coco
  * @Date: 2022/9/10
  **/
 public interface NanqiaoActivityApplyDAO{

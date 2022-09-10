@@ -5,7 +5,7 @@ import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import java.io.Serializable;
 
 /**
- * @Author: haiyi
+ * @Author: coco
  * @Date: 2022/9/10
  **/
 public class BaseResponse<T> implements Serializable {

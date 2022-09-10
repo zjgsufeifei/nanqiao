@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * @Author: haiyi
+ * @Author: coco
  * @Date: 2022/9/10
  **/
 @ComponentScan
