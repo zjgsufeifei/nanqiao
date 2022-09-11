@@ -1,5 +1,6 @@
 package com.example.nanqiao.api.controllers;
 
+import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
 import com.example.nanqiao.common.request.activity.ApplyCreateRequest;
 import com.example.nanqiao.common.response.BaseResponse;
 import com.example.nanqiao.core.service.ActivityApplyService;
@@ -32,8 +33,8 @@ public class ActivityApplyController {
      * 活动报名审核
      */
     @RequestMapping(value = "/audit", method = RequestMethod.POST)
-    public BaseResponse auditApply(@RequestBody ApplyCreateRequest request) {
-        activityApplyService.createApply(request);
+    public BaseResponse auditApply(@RequestBody ApplyAuditRequest request) {
+        activityApplyService.auditApply(request);
         return BaseResponse.newSuccResponse().build();
     }
 }

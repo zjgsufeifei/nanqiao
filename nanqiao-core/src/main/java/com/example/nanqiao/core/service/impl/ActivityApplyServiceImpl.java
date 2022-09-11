@@ -2,6 +2,7 @@ package com.example.nanqiao.core.service.impl;
 
 import com.example.nanqiao.common.error.BaseException;
 import com.example.nanqiao.common.error.NanQiaoErrorCode;
+import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
 import com.example.nanqiao.common.request.activity.ApplyCreateRequest;
 import com.example.nanqiao.common.util.MobileUtils;
 import com.example.nanqiao.core.service.ActivityApplyService;
@@ -46,5 +47,10 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         }
         ActivityApplyBO activityApplyBO=ActivityApplyBO.builder().userName(request.getUserName()).phone(request.getPhone()).number(request.getUserNumber()).age(request.getAge()).email(request.getEmail()).build();
         nanqiaoActivityApplyDAO.applyActivity(request.getOpenId(), request.getActivityId(), activityApplyBO);
+    }
+
+    @Override
+    public void auditApply(ApplyAuditRequest request) {
+
     }
 }

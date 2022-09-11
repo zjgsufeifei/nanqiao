@@ -1,5 +1,6 @@
 package com.example.nanqiao.core.service;
 
+import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
 import com.example.nanqiao.common.request.activity.ApplyCreateRequest;
 
 /**
@@ -11,4 +12,8 @@ public interface ActivityApplyService {
      * 活动报名
      */
     void createApply(ApplyCreateRequest request);
+    /**
+     * 审核报名
+     */
+    void auditApply(ApplyAuditRequest request);
 }

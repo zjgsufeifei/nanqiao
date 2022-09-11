@@ -22,4 +22,8 @@ public class ApplyAuditRequest extends BaseRequest {
      * 审核人
      */
     private String auditor;
+    /**
+     * 审核结果 1-审核通过 2-审核通过
+     */
+    private Integer auditResult;
 }
