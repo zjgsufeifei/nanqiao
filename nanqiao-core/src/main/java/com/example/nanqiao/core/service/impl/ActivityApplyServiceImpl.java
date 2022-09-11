@@ -1,5 +1,6 @@
 package com.example.nanqiao.core.service.impl;
 
+import com.example.nanqiao.common.enums.ActivityApplyStatusEnum;
 import com.example.nanqiao.common.error.BaseException;
 import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
@@ -51,6 +52,22 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
 
     @Override
     public void auditApply(ApplyAuditRequest request) {
+        // TODO: 2022/9/11 查询活动信息
+        Date activityEndTime = new Date();
+        Date now = new Date();
 
+        if (now.after(activityEndTime)) {
+            nanqiaoActivityApplyDAO.updateApplyStatus(request.getOpenId(), request.getActivityId(), ActivityApplyStatusEnum.ACTIVITY_ENDED);
+            //告诉前端审核失败
+        }
+
+        //看人数
+        //TODO.
+
+        //事务更改
+        //1。人数+1
+        //2。更改状态
+        ActivityApplyStatusEnum auditResult = request.getAuditResult() == 1 ? ActivityApplyStatusEnum.APPLY_SUCCESS : ActivityApplyStatusEnum.APPLY_FAILED;
+        nanqiaoActivityApplyDAO.updateApplyStatus(request.getOpenId(), request.getActivityId(), auditResult);
     }
 }

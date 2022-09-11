@@ -1,11 +1,14 @@
 package com.example.nanqiao.dao.repository.impl;
 
 import com.example.nanqiao.common.enums.ActivityApplyStatusEnum;
+import com.example.nanqiao.common.error.BaseException;
+import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import com.example.nanqiao.dao.bo.ActivityApplyBO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDOExample;
 import com.example.nanqiao.dao.mapper.NanqiaoActivityApplyMapper;
 import com.example.nanqiao.dao.repository.NanqiaoActivityApplyDAO;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -43,5 +46,20 @@ public class NanqiaoActivityApplyDAOImpl implements NanqiaoActivityApplyDAO {
         newActivityApply.setGmtCreate(now);
         newActivityApply.setGmtModified(now);
         nanqiaoActivityApplyMapper.insertSelective(newActivityApply);
+    }
+
+    @Override
+    public void updateApplyStatus(String openId, Long activityId, ActivityApplyStatusEnum applyStatus) {
+        NanqiaoActivityApplyDOExample selectExample = new NanqiaoActivityApplyDOExample();
+        selectExample.createCriteria().andOpenIdEqualTo(openId).andActivityIdEqualTo(activityId);
+        List<NanqiaoActivityApplyDO> applyList = nanqiaoActivityApplyMapper.selectByExample(selectExample);
+
+        if (ObjectUtils.isEmpty(applyList)) throw new BaseException(NanQiaoErrorCode.APPLY_NOT_EXIST);
+        NanqiaoActivityApplyDO apply = new NanqiaoActivityApplyDO();
+        apply.setApplyStatus(applyStatus.getCode());
+
+        NanqiaoActivityApplyDOExample updateExample = new NanqiaoActivityApplyDOExample();
+        updateExample.createCriteria().andOpenIdEqualTo(openId).andActivityIdEqualTo(activityId);
+        nanqiaoActivityApplyMapper.updateByExampleSelective(apply, updateExample);
     }
 }

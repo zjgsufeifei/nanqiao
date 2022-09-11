@@ -1,5 +1,6 @@
 package com.example.nanqiao.dao.repository;
 
+import com.example.nanqiao.common.enums.ActivityApplyStatusEnum;
 import com.example.nanqiao.dao.bo.ActivityApplyBO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 
@@ -19,4 +20,9 @@ public interface NanqiaoActivityApplyDAO{
      * 报名活动
      */
     void applyActivity(String openId,Long activityId,ActivityApplyBO activityApplyBO);
+
+    /**
+     * 更新申请状态
+     */
+    void updateApplyStatus(String openId, Long activityId, ActivityApplyStatusEnum applyStatus);
 }

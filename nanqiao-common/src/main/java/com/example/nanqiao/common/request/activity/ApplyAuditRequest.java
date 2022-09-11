@@ -8,6 +8,8 @@ package com.example.nanqiao.common.request.activity;
 import com.example.nanqiao.common.request.BaseRequest;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 活动报名审核
  */
@@ -25,5 +27,6 @@ public class ApplyAuditRequest extends BaseRequest {
     /**
      * 审核结果 1-审核通过 2-审核通过
      */
+    @NotNull(message = "审核结果不能为空")
     private Integer auditResult;
 }
