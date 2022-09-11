@@ -1,5 +1,6 @@
-package com.example.nanqiao.api;
+package com.example.nanqiao.api.controllers;
 
+import com.example.nanqiao.api.NanqiaoApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
