@@ -38,6 +38,7 @@ public class NanqiaoActivityApplyDAOImpl implements NanqiaoActivityApplyDAO {
         newActivityApply.setUserName(activityApplyBO.getUserName());
         newActivityApply.setPhone(activityApplyBO.getPhone());
         newActivityApply.setAge(activityApplyBO.getAge());
+        newActivityApply.setSex(activityApplyBO.getSex());
         newActivityApply.setNumber(activityApplyBO.getNumber());
         newActivityApply.setEmail(activityApplyBO.getEmail());
         newActivityApply.setApplyStatus(ActivityApplyStatusEnum.AUDITING.getCode());

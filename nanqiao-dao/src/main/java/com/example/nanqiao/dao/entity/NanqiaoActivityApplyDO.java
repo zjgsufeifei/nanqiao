@@ -30,6 +30,8 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     private String auditor;
 
+    private Integer sex;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -134,5 +136,13 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     public void setAuditor(String auditor) {
         this.auditor = auditor == null ? null : auditor.trim();
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }

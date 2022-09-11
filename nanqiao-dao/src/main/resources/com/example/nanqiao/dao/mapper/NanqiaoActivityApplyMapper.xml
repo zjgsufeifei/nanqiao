@@ -15,6 +15,7 @@
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
     <result column="auditor" jdbcType="VARCHAR" property="auditor" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, open_id, activity_id, user_name, phone, age, number, email, apply_status, version, 
-    gmt_create, gmt_modified, auditor
+    gmt_create, gmt_modified, auditor, sex
   </sql>
   <select id="selectByExample" parameterType="com.example.nanqiao.dao.entity.NanqiaoActivityApplyDOExample" resultMap="BaseResultMap">
     select
@@ -96,13 +97,13 @@
     insert into nanqiao_activity_apply (open_id, activity_id, user_name, 
       phone, age, number, 
       email, apply_status, version, 
-      gmt_create, gmt_modified, auditor
-      )
+      gmt_create, gmt_modified, auditor, 
+      sex)
     values (#{openId,jdbcType=VARCHAR}, #{activityId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
       #{email,jdbcType=VARCHAR}, #{applyStatus,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{auditor,jdbcType=VARCHAR}
-      )
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{auditor,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO" useGeneratedKeys="true">
     insert into nanqiao_activity_apply
@@ -143,6 +144,9 @@
       <if test="auditor != null">
         auditor,
       </if>
+      <if test="sex != null">
+        sex,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="openId != null">
@@ -180,6 +184,9 @@
       </if>
       <if test="auditor != null">
         #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -231,6 +238,9 @@
       <if test="record.auditor != null">
         auditor = #{record.auditor,jdbcType=VARCHAR},
       </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -250,7 +260,8 @@
       version = #{record.version,jdbcType=INTEGER},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
-      auditor = #{record.auditor,jdbcType=VARCHAR}
+      auditor = #{record.auditor,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -16,6 +16,8 @@ public class ActivityApplyBO {
 
     private Integer age;
 
+    private Integer sex;
+
     private Integer number;
 
     private String email;

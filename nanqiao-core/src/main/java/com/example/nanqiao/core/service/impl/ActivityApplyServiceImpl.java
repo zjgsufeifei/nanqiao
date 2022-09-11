@@ -46,7 +46,7 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         if(CollectionUtils.isNotEmpty(nanqiaoActivityApplyLst)){
             throw new BaseException(NanQiaoErrorCode.ALREADY_APPLY_ACTIVITY);
         }
-        ActivityApplyBO activityApplyBO=ActivityApplyBO.builder().userName(request.getUserName()).phone(request.getPhone()).number(request.getUserNumber()).age(request.getAge()).email(request.getEmail()).build();
+        ActivityApplyBO activityApplyBO=ActivityApplyBO.builder().userName(request.getUserName()).phone(request.getPhone()).number(request.getUserNumber()).age(request.getAge()).sex(request.getSex()).email(request.getEmail()).build();
         nanqiaoActivityApplyDAO.applyActivity(request.getOpenId(), request.getActivityId(), activityApplyBO);
     }
 

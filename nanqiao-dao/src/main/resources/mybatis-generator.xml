@@ -8,6 +8,7 @@
         <!--自动实现Serializable接口-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"></plugin>
 
         <!-- 去除自动生成的注释 -->
         <commentGenerator>
