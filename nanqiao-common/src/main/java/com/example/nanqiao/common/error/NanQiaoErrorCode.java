@@ -27,7 +27,7 @@ public enum NanQiaoErrorCode {
     /**
      * 系统异常
      */
-    SYSTEM_ERROR(300006, "系统异常"),
+    SYSTEM_ERROR(300006, "系统异常，请重试"),
     /**
      * 并发修改
      */

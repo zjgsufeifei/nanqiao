@@ -28,6 +28,8 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     private Date gmtModified;
 
+    private String auditor;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -124,5 +126,13 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public String getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        this.auditor = auditor == null ? null : auditor.trim();
     }
 }

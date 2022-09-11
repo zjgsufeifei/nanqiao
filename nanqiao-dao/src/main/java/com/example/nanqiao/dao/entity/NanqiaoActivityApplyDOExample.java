@@ -864,6 +864,76 @@ public class NanqiaoActivityApplyDOExample {
             addCriterion("gmt_modified not between", value1, value2, "gmtModified");
             return (Criteria) this;
         }
+
+        public Criteria andAuditorIsNull() {
+            addCriterion("auditor is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorIsNotNull() {
+            addCriterion("auditor is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorEqualTo(String value) {
+            addCriterion("auditor =", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorNotEqualTo(String value) {
+            addCriterion("auditor <>", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorGreaterThan(String value) {
+            addCriterion("auditor >", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorGreaterThanOrEqualTo(String value) {
+            addCriterion("auditor >=", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorLessThan(String value) {
+            addCriterion("auditor <", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorLessThanOrEqualTo(String value) {
+            addCriterion("auditor <=", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorLike(String value) {
+            addCriterion("auditor like", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorNotLike(String value) {
+            addCriterion("auditor not like", value, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorIn(List<String> values) {
+            addCriterion("auditor in", values, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorNotIn(List<String> values) {
+            addCriterion("auditor not in", values, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorBetween(String value1, String value2) {
+            addCriterion("auditor between", value1, value2, "auditor");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditorNotBetween(String value1, String value2) {
+            addCriterion("auditor not between", value1, value2, "auditor");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
