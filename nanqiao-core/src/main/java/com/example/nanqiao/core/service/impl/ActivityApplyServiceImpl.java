@@ -5,6 +5,8 @@ import com.example.nanqiao.common.error.BaseException;
 import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
 import com.example.nanqiao.common.request.activity.ApplyCreateRequest;
+import com.example.nanqiao.common.request.activity.ApplyResultQueryRequest;
+import com.example.nanqiao.common.response.activity.ApplyResultQueryResponse;
 import com.example.nanqiao.common.util.MobileUtils;
 import com.example.nanqiao.core.service.ActivityApplyService;
 import com.example.nanqiao.dao.bo.ActivityApplyBO;
@@ -87,7 +89,7 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         List<NanqiaoActivityApplyDO> nanqiaoActivityApplyList=nanqiaoActivityApplyDAO.queryActivityApplyInfo(activityApplyUk);
         if(CollectionUtils.isEmpty(nanqiaoActivityApplyList)) throw new BaseException(NanQiaoErrorCode.APPLY_NOT_EXIST);
         if (now.after(activityEndTime)) {
-            nanqiaoActivityApplyDAO.updateApplyStatus(activityApplyUk, ActivityApplyStatusEnum.ACTIVITY_ENDED);
+            nanqiaoActivityApplyDAO.updateApplyStatus(activityApplyUk, ActivityApplyStatusEnum.ACTIVITY_ENDED, request.getAuditor());
             //告诉前端审核失败
             throw new BaseException(NanQiaoErrorCode.ACTIVITY_ENDED);
         }
@@ -102,9 +104,20 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         //1。人数+1
         //2。更改状态
         ActivityApplyStatusEnum auditResult = request.getAuditResult() == 1 ? ActivityApplyStatusEnum.APPLY_SUCCESS : ActivityApplyStatusEnum.APPLY_FAILED;
-        nanqiaoActivityApplyDAO.updateApplyStatus(ActivityApplyUk.builder().openId(request.getOpenId()).activityId(request.getActivityId()).build(), auditResult);
+        nanqiaoActivityApplyDAO.updateApplyStatus(ActivityApplyUk.builder().openId(request.getOpenId()).activityId(request.getActivityId()).build(), auditResult, request.getAuditor());
         ActivityStatisticsBO activityStatisticsBO=new ActivityStatisticsBO();
         activityStatisticsBO.setApplySuccess(true);
         activityApplyStatisticsDAO.recordActivityStatistics(activityId,activityName,activityStatisticsBO);
+    }
+
+    @Override
+    public ApplyResultQueryResponse queryApply(ApplyResultQueryRequest request) {
+        ActivityApplyUk activityApplyUk=ActivityApplyUk.builder().openId(request.getOpenId()).activityId(request.getActivityId()).build();
+        List<NanqiaoActivityApplyDO> nanqiaoActivityApplyList=nanqiaoActivityApplyDAO.queryActivityApplyInfo(activityApplyUk);
+        if(CollectionUtils.isEmpty(nanqiaoActivityApplyList)){
+            return null;
+        }
+        NanqiaoActivityApplyDO nanqiaoActivityApply=nanqiaoActivityApplyList.get(0);
+        return ApplyResultQueryResponse.builder().applyStatus(nanqiaoActivityApply.getApplyStatus()).applyTime(nanqiaoActivityApply.getGmtCreate()).build();
     }
 }
