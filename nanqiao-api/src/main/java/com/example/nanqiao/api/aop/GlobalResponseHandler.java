@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public class GlobalResponseHandler {
     @ExceptionHandler(BaseException.class)
-    public BaseResponse nanqiaoException(BaseException baseException){
+    public BaseResponse nanQiaoException(BaseException baseException){
         return BaseResponse.newFailResponse().errorCode(baseException.getCode()).errorMsg(baseException.getMessage()).build();
     }
 
