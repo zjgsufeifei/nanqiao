@@ -29,4 +29,8 @@ public class ApplyAuditRequest extends BaseRequest {
      */
     @NotNull(message = "审核结果不能为空")
     private Integer auditResult;
+    /**
+     * 超出人数是否继续审核通过 0-否 1-是
+     */
+    private Integer forceAuditSuccess=0;
 }

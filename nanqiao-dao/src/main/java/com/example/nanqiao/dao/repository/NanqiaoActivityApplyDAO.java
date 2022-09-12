@@ -2,6 +2,7 @@ package com.example.nanqiao.dao.repository;
 
 import com.example.nanqiao.common.enums.ActivityApplyStatusEnum;
 import com.example.nanqiao.dao.bo.ActivityApplyBO;
+import com.example.nanqiao.dao.bo.ActivityApplyUk;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 
 import java.util.List;
@@ -14,15 +15,15 @@ public interface NanqiaoActivityApplyDAO{
     /**
      * 查询用户报名信息
      */
-    List<NanqiaoActivityApplyDO> queryActivityApplyInfo(String openId,Long activityId);
+    List<NanqiaoActivityApplyDO> queryActivityApplyInfo(ActivityApplyUk activityApplyUk);
 
     /**
      * 报名活动
      */
-    void applyActivity(String openId,Long activityId,ActivityApplyBO activityApplyBO);
+    void applyActivity(ActivityApplyUk activityApplyUk,ActivityApplyBO activityApplyBO);
 
     /**
      * 更新申请状态
      */
-    void updateApplyStatus(String openId, Long activityId, ActivityApplyStatusEnum applyStatus);
+    void updateApplyStatus(ActivityApplyUk activityApplyUk, ActivityApplyStatusEnum applyStatus);
 }
