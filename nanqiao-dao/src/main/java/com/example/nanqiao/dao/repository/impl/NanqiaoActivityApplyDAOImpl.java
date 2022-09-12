@@ -1,15 +1,12 @@
 package com.example.nanqiao.dao.repository.impl;
 
 import com.example.nanqiao.common.enums.ActivityApplyStatusEnum;
-import com.example.nanqiao.common.error.BaseException;
-import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import com.example.nanqiao.dao.bo.ActivityApplyBO;
 import com.example.nanqiao.dao.bo.ActivityApplyUk;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDOExample;
 import com.example.nanqiao.dao.mapper.NanqiaoActivityApplyMapper;
 import com.example.nanqiao.dao.repository.NanqiaoActivityApplyDAO;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

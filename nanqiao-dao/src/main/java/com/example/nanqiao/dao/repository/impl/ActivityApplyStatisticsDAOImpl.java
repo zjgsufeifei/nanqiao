@@ -49,10 +49,10 @@ public class ActivityApplyStatisticsDAOImpl implements ActivityApplyStatisticsDA
             initApplyStatisticsDO.setMaleNumber(BooleanUtils.isTrue(activityStatisticsBO.getMale())?1:0);
             initApplyStatisticsDO.setFemaleNumber(BooleanUtils.isTrue(activityStatisticsBO.getFemale())?1:0);
             if(BooleanUtils.isTrue(activityStatisticsBO.getApply())){
-                initApplyStatisticsDO.setApplyNumber(1);
+                initApplyStatisticsDO.setApplyNumber(activityStatisticsBO.getApplyNumber());
             }
             if(BooleanUtils.isTrue(activityStatisticsBO.getApplySuccess())){
-                initApplyStatisticsDO.setApplySuccessNumber(1);
+                initApplyStatisticsDO.setApplySuccessNumber(activityStatisticsBO.getApplyNumber());
             }
             initApplyStatisticsDO.setVersion(1);
             Date now=new Date();
@@ -66,7 +66,7 @@ public class ActivityApplyStatisticsDAOImpl implements ActivityApplyStatisticsDA
             ActivityApplyStatisticsDO activityApplyStatisticsCurrent =activityApplyStatisticsList.get(0);
             ActivityApplyStatisticsDO toUpdate=new ActivityApplyStatisticsDO();
             if(BooleanUtils.isTrue(activityStatisticsBO.getApplySuccess())){
-                toUpdate.setApplySuccessNumber(activityApplyStatisticsCurrent.getApplySuccessNumber()+1);
+                toUpdate.setApplySuccessNumber(activityApplyStatisticsCurrent.getApplySuccessNumber()+activityStatisticsBO.getApplyNumber());
             }else {
                 if(BooleanUtils.isTrue(activityStatisticsBO.getMale())){
                     toUpdate.setMaleNumber(activityApplyStatisticsCurrent.getMaleNumber()+1);
@@ -75,7 +75,7 @@ public class ActivityApplyStatisticsDAOImpl implements ActivityApplyStatisticsDA
                     toUpdate.setMaleNumber(activityApplyStatisticsCurrent.getFemaleNumber()+1);
                 }
                 if(BooleanUtils.isTrue(activityStatisticsBO.getApply())){
-                    toUpdate.setApplyNumber(activityApplyStatisticsCurrent.getApplyNumber()+1);
+                    toUpdate.setApplyNumber(activityApplyStatisticsCurrent.getApplyNumber()+activityStatisticsBO.getApplyNumber());
                 }
                 Integer age=activityStatisticsBO.getAge();
                 if(Objects.nonNull(age)){

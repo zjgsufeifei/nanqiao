@@ -13,4 +13,5 @@ public class ActivityStatisticsBO {
     private Boolean apply;
     private Boolean applySuccess;
     private Integer age;
+    private Integer applyNumber;
 }
