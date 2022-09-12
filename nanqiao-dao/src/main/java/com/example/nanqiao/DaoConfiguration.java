@@ -1,5 +1,6 @@
 package com.example.nanqiao;
 
+import com.example.nanqiao.common.constants.BusinessConstant;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -19,7 +20,7 @@ import javax.sql.DataSource;
 @MapperScan({"com.example.nanqiao.dao.mapper"})
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DaoConfiguration {
-    @Bean
+    @Bean(name = BusinessConstant.TRANSACTION_MANAGER_NAME)
     public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource){
         DataSourceTransactionManager dataSourceTransactionManager=new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(dataSource);

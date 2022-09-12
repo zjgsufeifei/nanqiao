@@ -24,6 +24,9 @@ public class ApplyCreateRequest extends BaseRequest {
     private String phone;
     @NotNull(message = "年龄不能为空")
     private Integer age;
+    /**
+     * 1-男 2-女
+     */
     @NotNull(message = "性别不能为空")
     private Integer sex;
     @NotNull(message = "报名人数不能为空")
