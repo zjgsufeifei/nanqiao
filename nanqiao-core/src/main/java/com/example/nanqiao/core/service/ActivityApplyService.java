@@ -2,7 +2,9 @@ package com.example.nanqiao.core.service;
 
 import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
 import com.example.nanqiao.common.request.activity.ApplyCreateRequest;
-import com.example.nanqiao.common.request.activity.ApplyResultQueryRequest;
+import com.example.nanqiao.common.request.activity.ApplyResultDetailQueryRequest;
+import com.example.nanqiao.common.request.activity.ApplyResultListQueryRequest;
+import com.example.nanqiao.common.response.activity.ApplyListResponse;
 import com.example.nanqiao.common.response.activity.ApplyResultQueryResponse;
 
 /**
@@ -22,5 +24,9 @@ public interface ActivityApplyService {
     /***
      * 查询报名结果
      */
-    ApplyResultQueryResponse queryApply(ApplyResultQueryRequest request);
+    ApplyResultQueryResponse queryApplyDetail(ApplyResultDetailQueryRequest request);
+    /**
+     * 报名列表
+     */
+    ApplyListResponse queryApplyList(ApplyResultListQueryRequest request);
 }
