@@ -2,7 +2,9 @@ package com.example.nanqiao.api.controllers;
 
 import com.example.nanqiao.common.request.activity.ApplyAuditRequest;
 import com.example.nanqiao.common.request.activity.ApplyCreateRequest;
+import com.example.nanqiao.common.request.activity.ApplyResultQueryRequest;
 import com.example.nanqiao.common.response.BaseResponse;
+import com.example.nanqiao.common.response.activity.ApplyResultQueryResponse;
 import com.example.nanqiao.core.service.ActivityApplyService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,5 +38,13 @@ public class ActivityApplyController {
     public BaseResponse auditApply(@RequestBody ApplyAuditRequest request) {
         activityApplyService.auditApply(request);
         return BaseResponse.newSuccResponse().build();
+    }
+
+    /**
+     * 活动报名结果
+     */
+    @RequestMapping(value = "/query", method = RequestMethod.POST)
+    public BaseResponse<ApplyResultQueryResponse> queryApply(@RequestBody ApplyResultQueryRequest request) {
+        return BaseResponse.success(activityApplyService.queryApply(request)).build();
     }
 }
