@@ -46,7 +46,7 @@ public class ActivityApplyController {
      * 活动报名结果
      */
     @RequestMapping(value = "/query/detail", method = RequestMethod.POST)
-    public BaseResponse<ApplyResultQueryResponse> queryApplDetaily(@RequestBody ApplyResultDetailQueryRequest request) {
+    public BaseResponse<ApplyResultQueryResponse> queryApplyDetail(@RequestBody ApplyResultDetailQueryRequest request) {
         return BaseResponse.success(activityApplyService.queryApplyDetail(request)).build();
     }
     /**

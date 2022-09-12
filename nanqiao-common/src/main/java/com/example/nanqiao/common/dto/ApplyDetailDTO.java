@@ -19,6 +19,10 @@ import java.util.Date;
 public class ApplyDetailDTO implements Serializable {
     private static final long serialVersionUID = -3275891904544994746L;
     /**
+     * 小程序用户ID
+     */
+    private String openId;
+    /**
      * 报名时间
      */
     private Date applyTime;

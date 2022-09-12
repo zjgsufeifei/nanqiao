@@ -18,7 +18,7 @@
 
         <!--数据库基本信息-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://sh-cynosdbmysql-grp-3y5clxxs.sql.tencentcdb.com:25549/springboot_demo"
+                        connectionURL="jdbc:mysql://sh-cynosdbmysql-grp-3y5clxxs.sql.tencentcdb.com:25549/nanqiao"
                         userId="root"
                         password="jxNk9cqu">
         </jdbcConnection>

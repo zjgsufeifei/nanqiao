@@ -17,7 +17,7 @@ public class ApplyResultListQueryRequest implements Serializable {
     @NotNull(message = "活动ID不能为空")
     private Long activityId;
     /**
-     * 审核状态
+     * 审核状态 0-待审核 10-审核通过报名成功 20-审核拒绝报名失败 99-活动已结束
      */
     private Integer applyStatus;
     @Min(value = 1)

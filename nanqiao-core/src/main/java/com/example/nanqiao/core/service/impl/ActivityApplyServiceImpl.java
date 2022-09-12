@@ -65,8 +65,8 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         // TODO: 2022/9/12 待补充name
         String activityName="";
         ActivityApplyUk activityApplyUk=ActivityApplyUk.builder().openId(request.getOpenId()).activityId(request.getActivityId()).build();
-        List<NanqiaoActivityApplyDO> nanqiaoActivityApplyLst=nanqiaoActivityApplyDAO.queryActivityApplyInfo(activityApplyUk);
-        if(CollectionUtils.isNotEmpty(nanqiaoActivityApplyLst)){
+        List<NanqiaoActivityApplyDO> nanqiaoActivityApplyList=nanqiaoActivityApplyDAO.queryActivityApplyInfo(activityApplyUk);
+        if(CollectionUtils.isNotEmpty(nanqiaoActivityApplyList)){
             throw new BaseException(NanQiaoErrorCode.ALREADY_APPLY_ACTIVITY);
         }
         ActivityApplyBO activityApplyBO=ActivityApplyBO.builder().userName(request.getUserName()).phone(request.getPhone()).number(request.getUserNumber()).age(request.getAge()).sex(request.getSex()).email(request.getEmail()).build();
@@ -81,6 +81,7 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         else if(request.getSex()==2){
             activityStatisticsBO.setFemale(true);
         }
+        activityStatisticsBO.setApplyNumber(request.getUserNumber());
         activityApplyStatisticsDAO.recordActivityStatistics(activityId,activityName,activityStatisticsBO);
     }
 
@@ -116,6 +117,7 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         nanqiaoActivityApplyDAO.updateApplyStatus(ActivityApplyUk.builder().openId(request.getOpenId()).activityId(request.getActivityId()).build(), auditResult, request.getAuditor());
         ActivityStatisticsBO activityStatisticsBO=new ActivityStatisticsBO();
         activityStatisticsBO.setApplySuccess(true);
+        activityStatisticsBO.setApplyNumber(nanqiaoActivityApplyList.get(0).getNumber());
         activityApplyStatisticsDAO.recordActivityStatistics(activityId,activityName,activityStatisticsBO);
     }
 
@@ -127,8 +129,9 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
             return null;
         }
         NanqiaoActivityApplyDO activityApply=nanqiaoActivityApplyList.get(0);
-        ApplyDetailDTO applyDetailDTO=ApplyDetailDTO.builder().userName(activityApply.getUserName()).userNumber(activityApply.getNumber()).phone(activityApply.getPhone())
-                .age(activityApply.getAge()).sex(activityApply.getSex()).email(activityApply.getEmail()).applyTime(activityApply.getGmtCreate()).build();
+        ApplyDetailDTO applyDetailDTO=ApplyDetailDTO.builder().userName(activityApply.getUserName()).userNumber(activityApply.getNumber())
+                .phone(activityApply.getPhone()).age(activityApply.getAge()).sex(activityApply.getSex())
+                .email(activityApply.getEmail()).applyTime(activityApply.getGmtCreate()).openId(activityApplyUk.getOpenId()).build();
         return ApplyResultQueryResponse.builder().applyStatus(activityApply.getApplyStatus()).applyDetail(applyDetailDTO).build();
     }
 
@@ -147,8 +150,9 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
             return null;
         }
         List<ApplyDetailDTO> applyDetailList=nanqiaoActivityApplyList.stream().map(activityApply->{
-            ApplyDetailDTO applyDetailDTO=ApplyDetailDTO.builder().userName(activityApply.getUserName()).userNumber(activityApply.getNumber()).phone(activityApply.getPhone())
-                    .age(activityApply.getAge()).sex(activityApply.getSex()).email(activityApply.getEmail()).applyTime(activityApply.getGmtCreate()).build();
+            ApplyDetailDTO applyDetailDTO=ApplyDetailDTO.builder().userName(activityApply.getUserName()).userNumber(activityApply.getNumber())
+                    .phone(activityApply.getPhone()).age(activityApply.getAge()).sex(activityApply.getSex())
+                    .email(activityApply.getEmail()).applyTime(activityApply.getGmtCreate()).openId(activityApply.getOpenId()).build();
             return applyDetailDTO;
         }).collect(Collectors.toList());
         ApplyListResponse applyListResponse=new ApplyListResponse();
