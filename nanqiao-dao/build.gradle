@@ -15,6 +15,7 @@ configurations {
 
 dependencies {
     compile project(':nanqiao-common')
+    compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.4.3')
     mybatisGenerator "org.mybatis.generator:mybatis-generator-core:${generatorVersion}"
     mybatisGenerator "mysql:mysql-connector-java:${mysqlVersion}"
     mybatisGenerator "tk.mybatis:mapper:${mybatisMapperVersion}"
@@ -29,7 +30,7 @@ def getDbProperties = {
     properties;
 }
 task mybatisGenerate {
-    doLast{
+    doLast {
         def properties = getDbProperties()
         ant.properties['targetProject'] = projectDir.path
         ant.properties['driverClass'] = properties.getProperty("jdbc.driverClassName")

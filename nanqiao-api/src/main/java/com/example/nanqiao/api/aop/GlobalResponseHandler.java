@@ -24,7 +24,8 @@ public class GlobalResponseHandler {
     }
 
     @ExceptionHandler(Throwable.class)
-    public BaseResponse otherException(Throwable throwable){
+    public BaseResponse otherException(Throwable t){
+        log.error("system error", t);
         return BaseResponse.newFailResponse().errorCode(NanQiaoErrorCode.SYSTEM_ERROR.getCode()).errorMsg(NanQiaoErrorCode.SYSTEM_ERROR.getDescription()).build();
     }
 }
