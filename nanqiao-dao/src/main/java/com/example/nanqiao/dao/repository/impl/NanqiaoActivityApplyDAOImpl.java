@@ -51,11 +51,12 @@ public class NanqiaoActivityApplyDAOImpl implements NanqiaoActivityApplyDAO {
     }
 
     @Override
-    public void updateApplyStatus(ActivityApplyUk activityApplyUk, ActivityApplyStatusEnum applyStatus) {
+    public void updateApplyStatus(ActivityApplyUk activityApplyUk, ActivityApplyStatusEnum applyStatus,String auditor) {
         NanqiaoActivityApplyDOExample updateExample = new NanqiaoActivityApplyDOExample();
         updateExample.createCriteria().andOpenIdEqualTo(activityApplyUk.getOpenId()).andActivityIdEqualTo(activityApplyUk.getActivityId()).andApplyStatusEqualTo(ActivityApplyStatusEnum.AUDITING.getCode());
         NanqiaoActivityApplyDO toUpdate=new NanqiaoActivityApplyDO();
         toUpdate.setApplyStatus(applyStatus.getCode());
+        toUpdate.setAuditor(auditor);
         nanqiaoActivityApplyMapper.updateByExampleSelective(toUpdate, updateExample);
     }
 }

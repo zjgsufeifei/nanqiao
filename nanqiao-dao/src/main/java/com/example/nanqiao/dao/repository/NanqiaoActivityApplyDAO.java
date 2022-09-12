@@ -25,5 +25,5 @@ public interface NanqiaoActivityApplyDAO{
     /**
      * 更新申请状态
      */
-    void updateApplyStatus(ActivityApplyUk activityApplyUk, ActivityApplyStatusEnum applyStatus);
+    void updateApplyStatus(ActivityApplyUk activityApplyUk, ActivityApplyStatusEnum applyStatus,String auditor);
 }
