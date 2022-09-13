@@ -4,6 +4,7 @@ import com.example.nanqiao.common.error.BaseException;
 import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import com.example.nanqiao.common.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,6 +24,9 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 @Slf4j
 public class GlobalResponseHandler {
+    @Value("${spring.http.multipart.max-file-size}")
+    private String maxFileSize;
+
     @ExceptionHandler(BaseException.class)
     public BaseResponse nanQiaoException(BaseException baseException) {
         return BaseResponse.newFailResponse().errorCode(baseException.getCode()).errorMsg(baseException.getMessage()).build();
@@ -39,7 +43,7 @@ public class GlobalResponseHandler {
     @ExceptionHandler(MultipartException.class)
     public BaseResponse nanQiaoException(MultipartException e) {
         log.error("file to big", e);
-        return BaseResponse.newFailResponse().errorCode(NanQiaoErrorCode.FILE_TOO_BIG.getCode()).errorMsg(NanQiaoErrorCode.FILE_TOO_BIG.getDescription()).build();
+        return BaseResponse.newFailResponse().errorCode(NanQiaoErrorCode.FILE_TOO_BIG.getCode()).errorMsg(NanQiaoErrorCode.FILE_TOO_BIG.getDescription() + maxFileSize).build();
     }
 
     @ExceptionHandler(Throwable.class)
