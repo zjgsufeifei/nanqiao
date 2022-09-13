@@ -6,9 +6,7 @@ import com.example.nanqiao.common.request.content.ContentCatalogUpdateRequest;
 import com.example.nanqiao.common.response.BaseResponse;
 import com.example.nanqiao.common.response.PageResult;
 import com.example.nanqiao.common.vo.ContentCatalogVO;
-import com.example.nanqiao.core.service.ContentCatalogService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/nan_qiao/content/catalog")
 public class ContentCatalogController {
-    @Autowired
-    private ContentCatalogService contentCatalogService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     BaseResponse<Boolean> add(@RequestBody ContentCatalogAddRequest request) {

@@ -9,15 +9,19 @@ import com.example.nanqiao.common.vo.ContentVO;
 import com.example.nanqiao.core.service.ContentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * @author smile
  */
 @Slf4j
+@Validated
 @RestController
 @RequestMapping("/nan_qiao/content")
 public class ContentController {
@@ -35,7 +39,7 @@ public class ContentController {
     }
 
     @RequestMapping(value = "/query", method = RequestMethod.POST)
-    BaseResponse<PageResult<ContentVO>> query(@RequestBody ContentQueryRequest request) {
+    BaseResponse<PageResult<ContentVO>> query(@Valid @RequestBody ContentQueryRequest request) {
         return BaseResponse.success(contentService.list(request)).build();
     }
 }
