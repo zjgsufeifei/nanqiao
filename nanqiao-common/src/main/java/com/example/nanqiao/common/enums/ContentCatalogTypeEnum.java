@@ -9,11 +9,14 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ContentCatalogTypeEnum {
-    BANNER(1, "banner"),
-    ACTIVITY_SHOW(100, "活动风采展示"),
+    BANNER(1, "banner", "banner"),
+    ACTIVITY_SHOW(2, "活动风采展示", "activity_show"),
     ;
 
     private final Integer code;
     private final String desc;
-
+    /**
+     * 资源存放目录
+     */
+    private final String dir;
 }

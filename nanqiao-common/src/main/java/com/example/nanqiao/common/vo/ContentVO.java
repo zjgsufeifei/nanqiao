@@ -12,6 +12,4 @@ public class ContentVO {
     private String filePath;
 
     private Long catalogId;
-
-    private Integer isDeleted;
 }

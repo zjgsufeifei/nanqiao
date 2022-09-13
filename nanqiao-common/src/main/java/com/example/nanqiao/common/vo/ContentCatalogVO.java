@@ -7,4 +7,11 @@ import lombok.Data;
  */
 @Data
 public class ContentCatalogVO {
+    private Long id;
+
+    private Integer type;
+
+    private String name;
+
+    private String coverImg;
 }
