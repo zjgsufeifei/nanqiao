@@ -8,6 +8,7 @@ import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MultipartException;
 
 import java.util.stream.Collectors;
 
@@ -33,6 +34,12 @@ public class GlobalResponseHandler {
 
         String errorMsg = e.getBindingResult().getFieldErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(";"));
         return BaseResponse.newFailResponse().errorCode(NanQiaoErrorCode.PARAM_ILLEGAL.getCode()).errorMsg(errorMsg).build();
+    }
+
+    @ExceptionHandler(MultipartException.class)
+    public BaseResponse nanQiaoException(MultipartException e) {
+        log.error("file to big", e);
+        return BaseResponse.newFailResponse().errorCode(NanQiaoErrorCode.FILE_TOO_BIG.getCode()).errorMsg(NanQiaoErrorCode.FILE_TOO_BIG.getDescription()).build();
     }
 
     @ExceptionHandler(Throwable.class)
