@@ -25,8 +25,12 @@ public class ApplyAuditRequest extends BaseRequest {
      */
     private String auditor;
     /**
-     * 审核结果 1-审核通过 2-审核通过
+     * 审核结果 1-审核通过 2-审核拒绝
      */
     @NotNull(message = "审核结果不能为空")
     private Integer auditResult;
+    /**
+     * 超出人数是否继续审核通过 0-否 1-是
+     */
+    private Integer forceAuditSuccess=0;
 }

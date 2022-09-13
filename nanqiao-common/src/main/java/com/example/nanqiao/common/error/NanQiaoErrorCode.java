@@ -51,8 +51,15 @@ public enum NanQiaoErrorCode {
      */
     ALREADY_APPLY_ACTIVITY(310002, "已报名过该活动，不能重复报名"),
 
-
-    APPLY_NOT_EXIST(310003, "未查询到该用户的申请");
+    /**
+     * 未查询到该用户的申请
+     */
+    APPLY_NOT_EXIST(310003, "未查询到该用户的申请"),
+    /**
+     * 当前参与人数已超过活动限制人数
+     */
+    EXCEED_ACTIVITY_NUMBER(310004,"当前参与人数已超过活动限制人数"),
+    ;
 
 
     private final String description;

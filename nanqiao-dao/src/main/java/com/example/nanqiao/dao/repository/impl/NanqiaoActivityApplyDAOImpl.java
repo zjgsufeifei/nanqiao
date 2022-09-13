@@ -1,14 +1,12 @@
 package com.example.nanqiao.dao.repository.impl;
 
 import com.example.nanqiao.common.enums.ActivityApplyStatusEnum;
-import com.example.nanqiao.common.error.BaseException;
-import com.example.nanqiao.common.error.NanQiaoErrorCode;
 import com.example.nanqiao.dao.bo.ActivityApplyBO;
+import com.example.nanqiao.dao.bo.ActivityApplyUk;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDOExample;
 import com.example.nanqiao.dao.mapper.NanqiaoActivityApplyMapper;
 import com.example.nanqiao.dao.repository.NanqiaoActivityApplyDAO;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -24,17 +22,17 @@ public class NanqiaoActivityApplyDAOImpl implements NanqiaoActivityApplyDAO {
     @Resource
     private NanqiaoActivityApplyMapper nanqiaoActivityApplyMapper;
     @Override
-    public List<NanqiaoActivityApplyDO> queryActivityApplyInfo(String openId, Long activityId) {
+    public List<NanqiaoActivityApplyDO> queryActivityApplyInfo(ActivityApplyUk activityApplyUk) {
         NanqiaoActivityApplyDOExample applyDOExample=new NanqiaoActivityApplyDOExample();
-        applyDOExample.createCriteria().andOpenIdEqualTo(openId).andActivityIdEqualTo(activityId);
+        applyDOExample.createCriteria().andOpenIdEqualTo(activityApplyUk.getOpenId()).andActivityIdEqualTo(activityApplyUk.getActivityId());
         return nanqiaoActivityApplyMapper.selectByExample(applyDOExample);
     }
 
     @Override
-    public void applyActivity(String openId, Long activityId, ActivityApplyBO activityApplyBO) {
+    public void applyActivity(ActivityApplyUk activityApplyUk, ActivityApplyBO activityApplyBO) {
         NanqiaoActivityApplyDO newActivityApply=new NanqiaoActivityApplyDO();
-        newActivityApply.setOpenId(openId);
-        newActivityApply.setActivityId(activityId);
+        newActivityApply.setOpenId(activityApplyUk.getOpenId());
+        newActivityApply.setActivityId(activityApplyUk.getActivityId());
         newActivityApply.setUserName(activityApplyBO.getUserName());
         newActivityApply.setPhone(activityApplyBO.getPhone());
         newActivityApply.setAge(activityApplyBO.getAge());
@@ -50,17 +48,12 @@ public class NanqiaoActivityApplyDAOImpl implements NanqiaoActivityApplyDAO {
     }
 
     @Override
-    public void updateApplyStatus(String openId, Long activityId, ActivityApplyStatusEnum applyStatus) {
-        NanqiaoActivityApplyDOExample selectExample = new NanqiaoActivityApplyDOExample();
-        selectExample.createCriteria().andOpenIdEqualTo(openId).andActivityIdEqualTo(activityId);
-        List<NanqiaoActivityApplyDO> applyList = nanqiaoActivityApplyMapper.selectByExample(selectExample);
-
-        if (ObjectUtils.isEmpty(applyList)) throw new BaseException(NanQiaoErrorCode.APPLY_NOT_EXIST);
-        NanqiaoActivityApplyDO apply = new NanqiaoActivityApplyDO();
-        apply.setApplyStatus(applyStatus.getCode());
-
+    public void updateApplyStatus(ActivityApplyUk activityApplyUk, ActivityApplyStatusEnum applyStatus,String auditor) {
         NanqiaoActivityApplyDOExample updateExample = new NanqiaoActivityApplyDOExample();
-        updateExample.createCriteria().andOpenIdEqualTo(openId).andActivityIdEqualTo(activityId);
-        nanqiaoActivityApplyMapper.updateByExampleSelective(apply, updateExample);
+        updateExample.createCriteria().andOpenIdEqualTo(activityApplyUk.getOpenId()).andActivityIdEqualTo(activityApplyUk.getActivityId()).andApplyStatusEqualTo(ActivityApplyStatusEnum.AUDITING.getCode());
+        NanqiaoActivityApplyDO toUpdate=new NanqiaoActivityApplyDO();
+        toUpdate.setApplyStatus(applyStatus.getCode());
+        toUpdate.setAuditor(auditor);
+        nanqiaoActivityApplyMapper.updateByExampleSelective(toUpdate, updateExample);
     }
 }
