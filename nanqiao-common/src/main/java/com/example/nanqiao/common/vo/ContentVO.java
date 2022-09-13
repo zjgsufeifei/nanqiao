@@ -9,7 +9,11 @@ import lombok.Data;
 public class ContentVO {
     private Long id;
 
+    private Integer type;
+
+    private String name;
+
     private String filePath;
 
-    private Long catalogId;
+    private Long parentId;
 }

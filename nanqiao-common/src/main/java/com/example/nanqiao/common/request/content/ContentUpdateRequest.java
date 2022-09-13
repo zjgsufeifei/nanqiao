@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class ContentUpdateRequest extends ContentAddRequest {
-    @NotNull(message = "内容ID不能为空")
+    @NotNull(message = "ID不能为空")
     private Long id;
 
     private Integer isDeleted;

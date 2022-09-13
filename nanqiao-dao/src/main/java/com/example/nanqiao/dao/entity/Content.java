@@ -6,9 +6,13 @@ import java.util.Date;
 public class Content implements Serializable {
     private Long id;
 
+    private Integer type;
+
+    private String name;
+
     private String filePath;
 
-    private Long catalogId;
+    private Long parentId;
 
     private Integer isDeleted;
 
@@ -26,6 +30,22 @@ public class Content implements Serializable {
         this.id = id;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
     public String getFilePath() {
         return filePath;
     }
@@ -34,12 +54,12 @@ public class Content implements Serializable {
         this.filePath = filePath == null ? null : filePath.trim();
     }
 
-    public Long getCatalogId() {
-        return catalogId;
+    public Long getParentId() {
+        return parentId;
     }
 
-    public void setCatalogId(Long catalogId) {
-        this.catalogId = catalogId;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public Integer getIsDeleted() {

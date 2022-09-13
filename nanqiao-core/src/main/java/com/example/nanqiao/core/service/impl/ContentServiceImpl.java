@@ -27,18 +27,23 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public boolean add(ContentAddRequest request) {
-        return dao.add(MyBeanUtils.convert(request, Content.class));
+        Content record = MyBeanUtils.convert(request, Content.class);
+        record.setType(request.getType().getCode());
+        return dao.add(record);
     }
 
     @Override
     public boolean update(ContentUpdateRequest request) {
-        return dao.update(MyBeanUtils.convert(request, Content.class));
+        Content record = MyBeanUtils.convert(request, Content.class);
+        record.setType(request.getType().getCode());
+        return dao.update(record);
     }
 
     @Override
     public PageResult<ContentVO> list(ContentQueryRequest request) {
+        long parentId = request.getParentId() == null ? 0 : request.getParentId();
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<Content> records = dao.list(request.getCatalogId());
+        List<Content> records = dao.list(request.getType(), parentId);
 
         long total = ((Page<Content>) records).getTotal();
         List<ContentVO> list = MyBeanUtils.convertList(records, ContentVO.class);

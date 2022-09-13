@@ -3,8 +3,10 @@
 <mapper namespace="com.example.nanqiao.dao.mapper.ContentMapper">
   <resultMap id="BaseResultMap" type="com.example.nanqiao.dao.entity.Content">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="file_path" jdbcType="VARCHAR" property="filePath" />
-    <result column="catalog_id" jdbcType="BIGINT" property="catalogId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, file_path, catalog_id, is_deleted, created_at, updated_at
+    id, type, name, file_path, parent_id, is_deleted, created_at, updated_at
   </sql>
   <select id="selectByExample" parameterType="com.example.nanqiao.dao.entity.ContentExample" resultMap="BaseResultMap">
     select
@@ -101,19 +103,27 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.Content" useGeneratedKeys="true">
-    insert into content (file_path, catalog_id, is_deleted, 
-      created_at, updated_at)
-    values (#{filePath,jdbcType=VARCHAR}, #{catalogId,jdbcType=BIGINT}, #{isDeleted,jdbcType=TINYINT}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+    insert into content (type, name, file_path, 
+      parent_id, is_deleted, created_at, 
+      updated_at)
+    values (#{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{isDeleted,jdbcType=TINYINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.Content" useGeneratedKeys="true">
     insert into content
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
       <if test="filePath != null">
         file_path,
       </if>
-      <if test="catalogId != null">
-        catalog_id,
+      <if test="parentId != null">
+        parent_id,
       </if>
       <if test="isDeleted != null">
         is_deleted,
@@ -126,11 +136,17 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
       <if test="filePath != null">
         #{filePath,jdbcType=VARCHAR},
       </if>
-      <if test="catalogId != null">
-        #{catalogId,jdbcType=BIGINT},
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
       </if>
       <if test="isDeleted != null">
         #{isDeleted,jdbcType=TINYINT},
@@ -155,11 +171,17 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
       <if test="record.filePath != null">
         file_path = #{record.filePath,jdbcType=VARCHAR},
       </if>
-      <if test="record.catalogId != null">
-        catalog_id = #{record.catalogId,jdbcType=BIGINT},
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
       <if test="record.isDeleted != null">
         is_deleted = #{record.isDeleted,jdbcType=TINYINT},
@@ -178,8 +200,10 @@
   <update id="updateByExample" parameterType="map">
     update content
     set id = #{record.id,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
       file_path = #{record.filePath,jdbcType=VARCHAR},
-      catalog_id = #{record.catalogId,jdbcType=BIGINT},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
       is_deleted = #{record.isDeleted,jdbcType=TINYINT},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
@@ -190,11 +214,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.example.nanqiao.dao.entity.Content">
     update content
     <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="filePath != null">
         file_path = #{filePath,jdbcType=VARCHAR},
       </if>
-      <if test="catalogId != null">
-        catalog_id = #{catalogId,jdbcType=BIGINT},
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
       </if>
       <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=TINYINT},
@@ -210,8 +240,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.nanqiao.dao.entity.Content">
     update content
-    set file_path = #{filePath,jdbcType=VARCHAR},
-      catalog_id = #{catalogId,jdbcType=BIGINT},
+    set type = #{type,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}

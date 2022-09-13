@@ -1,5 +1,6 @@
 package com.example.nanqiao.dao.repository;
 
+import com.example.nanqiao.common.enums.ContentTypeEnum;
 import com.example.nanqiao.dao.entity.Content;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface ContentDAO {
 
     boolean update(Content record);
 
-    List<Content> list(long catalogId);
+    List<Content> list(ContentTypeEnum type, long parentId);
 }

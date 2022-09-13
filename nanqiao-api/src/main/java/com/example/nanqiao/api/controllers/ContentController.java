@@ -29,12 +29,12 @@ public class ContentController {
     private ContentService contentService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    BaseResponse<Boolean> add(@RequestBody ContentAddRequest request) {
+    BaseResponse<Boolean> add(@Valid @RequestBody ContentAddRequest request) {
         return BaseResponse.success(contentService.add(request)).build();
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    BaseResponse<Boolean> update(@RequestBody ContentUpdateRequest request) {
+    BaseResponse<Boolean> update(@Valid @RequestBody ContentUpdateRequest request) {
         return BaseResponse.success(contentService.update(request)).build();
     }
 

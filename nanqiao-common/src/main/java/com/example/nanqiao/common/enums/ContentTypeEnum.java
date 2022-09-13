@@ -8,7 +8,7 @@ import lombok.Getter;
  **/
 @Getter
 @AllArgsConstructor
-public enum ContentCatalogTypeEnum {
+public enum ContentTypeEnum {
     BANNER(1, "banner", "banner"),
     ACTIVITY_SHOW(2, "活动风采展示", "activity_show"),
     ;

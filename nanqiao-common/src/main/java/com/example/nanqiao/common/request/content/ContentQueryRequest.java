@@ -1,15 +1,18 @@
 package com.example.nanqiao.common.request.content;
 
+import com.example.nanqiao.common.enums.ContentTypeEnum;
 import com.example.nanqiao.common.request.PageRequest;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * @author smile
  */
 @Data
 public class ContentQueryRequest extends PageRequest {
-    @NotNull(message = "类目ID不能为空")
-    private Long catalogId;
+    @ApiModelProperty("类型")
+    private ContentTypeEnum type;
+
+    @ApiModelProperty("父ID")
+    private Long parentId;
 }

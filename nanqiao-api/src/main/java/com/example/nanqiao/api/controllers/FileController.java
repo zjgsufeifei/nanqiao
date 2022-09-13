@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+
 /**
  * @author smile
  */
@@ -22,7 +24,7 @@ public class FileController {
      * 上传文件
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public BaseResponse<Boolean> upload(@RequestBody FileUploadRequest request, @RequestPart("file") MultipartFile file) {
+    public BaseResponse<Boolean> upload(@Valid @RequestBody FileUploadRequest request, @RequestPart("file") MultipartFile file) {
         fileService.upload(request, file);
         return BaseResponse.success(true).build();
     }

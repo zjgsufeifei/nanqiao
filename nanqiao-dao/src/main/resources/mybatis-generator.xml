@@ -76,7 +76,7 @@
 <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
 <!--        </table>-->
 
-        <table tableName="content_catalog">
+        <table tableName="content">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
             <columnOverride column="is_deleted" javaType="Integer" jdbcType="TINYINT"/>
         </table>

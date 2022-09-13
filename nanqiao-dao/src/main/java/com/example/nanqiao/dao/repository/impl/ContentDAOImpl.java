@@ -1,5 +1,6 @@
 package com.example.nanqiao.dao.repository.impl;
 
+import com.example.nanqiao.common.enums.ContentTypeEnum;
 import com.example.nanqiao.dao.entity.Content;
 import com.example.nanqiao.dao.entity.ContentExample;
 import com.example.nanqiao.dao.mapper.ContentMapper;
@@ -28,10 +29,14 @@ public class ContentDAOImpl implements ContentDAO {
     }
 
     @Override
-    public List<Content> list(long catalogId) {
+    public List<Content> list(ContentTypeEnum type, long parentId) {
         ContentExample example = new ContentExample();
         example.setOrderByClause("id DESC");
-        example.createCriteria().andCatalogIdEqualTo(catalogId).andIsDeletedEqualTo(0);
+        ContentExample.Criteria criteria = example.createCriteria();
+        if (type != null) {
+            criteria.andTypeEqualTo(type.getCode());
+        }
+        criteria.andParentIdEqualTo(parentId).andIsDeletedEqualTo(0);
         return mapper.selectByExample(example);
     }
 }
