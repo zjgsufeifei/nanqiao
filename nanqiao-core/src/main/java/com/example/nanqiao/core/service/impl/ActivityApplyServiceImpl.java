@@ -98,9 +98,14 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
         ActivityApplyUk activityApplyUk=ActivityApplyUk.builder().openId(openId).activityId(activityId).build();
         List<NanqiaoActivityApplyDO> nanqiaoActivityApplyList=nanqiaoActivityApplyDAO.queryActivityApplyInfo(activityApplyUk);
         if(CollectionUtils.isEmpty(nanqiaoActivityApplyList)) throw new BaseException(NanQiaoErrorCode.APPLY_NOT_EXIST);
+        if(Objects.equals(request.getAuditResult(),2)){
+            nanqiaoActivityApplyDAO.updateApplyStatus(activityApplyUk, ActivityApplyStatusEnum.APPLY_FAILED, request.getAuditor());
+            return;
+        }
+
         if (now.after(activityEndTime)) {
             nanqiaoActivityApplyDAO.updateApplyStatus(activityApplyUk, ActivityApplyStatusEnum.ACTIVITY_ENDED, request.getAuditor());
-            //告诉前端审核失败
+            //弹窗告知活动已结束
             throw new BaseException(NanQiaoErrorCode.ACTIVITY_ENDED);
         }
 
