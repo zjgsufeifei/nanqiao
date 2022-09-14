@@ -32,6 +32,8 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     private Integer sex;
 
+    private Date auditTime;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -144,5 +146,13 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public Date getAuditTime() {
+        return auditTime;
+    }
+
+    public void setAuditTime(Date auditTime) {
+        this.auditTime = auditTime;
     }
 }

@@ -54,6 +54,7 @@ public class NanqiaoActivityApplyDAOImpl implements NanqiaoActivityApplyDAO {
         NanqiaoActivityApplyDO toUpdate=new NanqiaoActivityApplyDO();
         toUpdate.setApplyStatus(applyStatus.getCode());
         toUpdate.setAuditor(auditor);
+        toUpdate.setAuditTime(new Date());
         nanqiaoActivityApplyMapper.updateByExampleSelective(toUpdate, updateExample);
     }
 }
