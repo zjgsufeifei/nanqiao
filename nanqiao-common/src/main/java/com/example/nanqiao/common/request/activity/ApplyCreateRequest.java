@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public class ApplyCreateRequest extends BaseRequest {
     private static final long serialVersionUID = -8391755372898697767L;
     @NotNull(message = "活动ID不能为空")
-    private Long activityId;
+    private String activityId;
     @NotNull(message = "报名姓名不能为空")
     private String userName;
     @NotNull(message = "报名手机号不能为空")

@@ -6,7 +6,7 @@ import java.util.Date;
 public class ActivityApplyStatisticsDO implements Serializable {
     private Long id;
 
-    private Long activityId;
+    private String activityId;
 
     private String activityName;
 
@@ -36,12 +36,12 @@ public class ActivityApplyStatisticsDO implements Serializable {
         this.id = id;
     }
 
-    public Long getActivityId() {
+    public String getActivityId() {
         return activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId == null ? null : activityId.trim();
     }
 
     public String getActivityName() {

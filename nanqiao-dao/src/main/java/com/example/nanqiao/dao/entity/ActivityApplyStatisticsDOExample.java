@@ -175,52 +175,62 @@ public class ActivityApplyStatisticsDOExample {
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdEqualTo(Long value) {
+        public Criteria andActivityIdEqualTo(String value) {
             addCriterion("activity_id =", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdNotEqualTo(Long value) {
+        public Criteria andActivityIdNotEqualTo(String value) {
             addCriterion("activity_id <>", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdGreaterThan(Long value) {
+        public Criteria andActivityIdGreaterThan(String value) {
             addCriterion("activity_id >", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andActivityIdGreaterThanOrEqualTo(String value) {
             addCriterion("activity_id >=", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdLessThan(Long value) {
+        public Criteria andActivityIdLessThan(String value) {
             addCriterion("activity_id <", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdLessThanOrEqualTo(Long value) {
+        public Criteria andActivityIdLessThanOrEqualTo(String value) {
             addCriterion("activity_id <=", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdIn(List<Long> values) {
+        public Criteria andActivityIdLike(String value) {
+            addCriterion("activity_id like", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdNotLike(String value) {
+            addCriterion("activity_id not like", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdIn(List<String> values) {
             addCriterion("activity_id in", values, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdNotIn(List<Long> values) {
+        public Criteria andActivityIdNotIn(List<String> values) {
             addCriterion("activity_id not in", values, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdBetween(Long value1, Long value2) {
+        public Criteria andActivityIdBetween(String value1, String value2) {
             addCriterion("activity_id between", value1, value2, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdNotBetween(Long value1, Long value2) {
+        public Criteria andActivityIdNotBetween(String value1, String value2) {
             addCriterion("activity_id not between", value1, value2, "activityId");
             return (Criteria) this;
         }

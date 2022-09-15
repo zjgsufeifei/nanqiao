@@ -6,7 +6,7 @@ import java.util.Date;
 public class ActivityInfoDO implements Serializable {
     private Long id;
 
-    private Long activityId;
+    private String activityId;
 
     private String title;
 
@@ -28,6 +28,8 @@ public class ActivityInfoDO implements Serializable {
 
     private Date gmtModified;
 
+    private String creator;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -38,12 +40,12 @@ public class ActivityInfoDO implements Serializable {
         this.id = id;
     }
 
-    public Long getActivityId() {
+    public String getActivityId() {
         return activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId == null ? null : activityId.trim();
     }
 
     public String getTitle() {
@@ -124,5 +126,13 @@ public class ActivityInfoDO implements Serializable {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator == null ? null : creator.trim();
     }
 }

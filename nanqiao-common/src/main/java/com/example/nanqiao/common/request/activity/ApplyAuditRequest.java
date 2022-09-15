@@ -19,7 +19,7 @@ public class ApplyAuditRequest extends BaseRequest {
     /**
      * 活动ID
      */
-    private Long activityId;
+    private String activityId;
     /**
      * 审核人
      */

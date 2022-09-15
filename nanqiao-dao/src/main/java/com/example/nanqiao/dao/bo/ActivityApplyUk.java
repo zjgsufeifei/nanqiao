@@ -11,5 +11,5 @@ import lombok.Data;
 @Builder
 public class ActivityApplyUk {
     private String openId;
-    private Long activityId;
+    private String activityId;
 }

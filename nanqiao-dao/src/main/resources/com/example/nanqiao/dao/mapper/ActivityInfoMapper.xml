@@ -3,7 +3,7 @@
 <mapper namespace="com.example.nanqiao.dao.mapper.ActivityInfoMapper">
   <resultMap id="BaseResultMap" type="com.example.nanqiao.dao.entity.ActivityInfoDO">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
     <result column="desc_path" jdbcType="VARCHAR" property="descPath" />
@@ -14,6 +14,7 @@
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, activity_id, title, image_path, desc_path, content_path, attention_path, number_limit, 
-    address, start_time, gmt_create, gmt_modified
+    address, start_time, gmt_create, gmt_modified, creator
   </sql>
   <select id="selectByExample" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultMap="BaseResultMap">
     select
@@ -95,11 +96,13 @@
     insert into activity_info (activity_id, title, image_path, 
       desc_path, content_path, attention_path, 
       number_limit, address, start_time, 
-      gmt_create, gmt_modified)
-    values (#{activityId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{imagePath,jdbcType=VARCHAR}, 
+      gmt_create, gmt_modified, creator
+      )
+    values (#{activityId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{imagePath,jdbcType=VARCHAR}, 
       #{descPath,jdbcType=VARCHAR}, #{contentPath,jdbcType=VARCHAR}, #{attentionPath,jdbcType=VARCHAR}, 
       #{numberLimit,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDO" useGeneratedKeys="true">
     insert into activity_info
@@ -137,10 +140,13 @@
       <if test="gmtModified != null">
         gmt_modified,
       </if>
+      <if test="creator != null">
+        creator,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="activityId != null">
-        #{activityId,jdbcType=BIGINT},
+        #{activityId,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -172,6 +178,9 @@
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=TIMESTAMP},
       </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultType="java.lang.Long">
@@ -187,7 +196,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.activityId != null">
-        activity_id = #{record.activityId,jdbcType=BIGINT},
+        activity_id = #{record.activityId,jdbcType=VARCHAR},
       </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
@@ -219,6 +228,9 @@
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -227,7 +239,7 @@
   <update id="updateByExample" parameterType="map">
     update activity_info
     set id = #{record.id,jdbcType=BIGINT},
-      activity_id = #{record.activityId,jdbcType=BIGINT},
+      activity_id = #{record.activityId,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       image_path = #{record.imagePath,jdbcType=VARCHAR},
       desc_path = #{record.descPath,jdbcType=VARCHAR},
@@ -237,7 +249,8 @@
       address = #{record.address,jdbcType=VARCHAR},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

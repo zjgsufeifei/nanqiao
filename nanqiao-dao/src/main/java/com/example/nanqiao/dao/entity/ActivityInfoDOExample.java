@@ -175,52 +175,62 @@ public class ActivityInfoDOExample {
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdEqualTo(Long value) {
+        public Criteria andActivityIdEqualTo(String value) {
             addCriterion("activity_id =", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdNotEqualTo(Long value) {
+        public Criteria andActivityIdNotEqualTo(String value) {
             addCriterion("activity_id <>", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdGreaterThan(Long value) {
+        public Criteria andActivityIdGreaterThan(String value) {
             addCriterion("activity_id >", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andActivityIdGreaterThanOrEqualTo(String value) {
             addCriterion("activity_id >=", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdLessThan(Long value) {
+        public Criteria andActivityIdLessThan(String value) {
             addCriterion("activity_id <", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdLessThanOrEqualTo(Long value) {
+        public Criteria andActivityIdLessThanOrEqualTo(String value) {
             addCriterion("activity_id <=", value, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdIn(List<Long> values) {
+        public Criteria andActivityIdLike(String value) {
+            addCriterion("activity_id like", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdNotLike(String value) {
+            addCriterion("activity_id not like", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdIn(List<String> values) {
             addCriterion("activity_id in", values, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdNotIn(List<Long> values) {
+        public Criteria andActivityIdNotIn(List<String> values) {
             addCriterion("activity_id not in", values, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdBetween(Long value1, Long value2) {
+        public Criteria andActivityIdBetween(String value1, String value2) {
             addCriterion("activity_id between", value1, value2, "activityId");
             return (Criteria) this;
         }
 
-        public Criteria andActivityIdNotBetween(Long value1, Long value2) {
+        public Criteria andActivityIdNotBetween(String value1, String value2) {
             addCriterion("activity_id not between", value1, value2, "activityId");
             return (Criteria) this;
         }
@@ -882,6 +892,76 @@ public class ActivityInfoDOExample {
 
         public Criteria andGmtModifiedNotBetween(Date value1, Date value2) {
             addCriterion("gmt_modified not between", value1, value2, "gmtModified");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorIsNull() {
+            addCriterion("creator is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorIsNotNull() {
+            addCriterion("creator is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorEqualTo(String value) {
+            addCriterion("creator =", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorNotEqualTo(String value) {
+            addCriterion("creator <>", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorGreaterThan(String value) {
+            addCriterion("creator >", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorGreaterThanOrEqualTo(String value) {
+            addCriterion("creator >=", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorLessThan(String value) {
+            addCriterion("creator <", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorLessThanOrEqualTo(String value) {
+            addCriterion("creator <=", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorLike(String value) {
+            addCriterion("creator like", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorNotLike(String value) {
+            addCriterion("creator not like", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorIn(List<String> values) {
+            addCriterion("creator in", values, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorNotIn(List<String> values) {
+            addCriterion("creator not in", values, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorBetween(String value1, String value2) {
+            addCriterion("creator between", value1, value2, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorNotBetween(String value1, String value2) {
+            addCriterion("creator not between", value1, value2, "creator");
             return (Criteria) this;
         }
     }

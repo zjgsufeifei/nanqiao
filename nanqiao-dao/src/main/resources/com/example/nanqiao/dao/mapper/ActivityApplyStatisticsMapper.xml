@@ -3,7 +3,7 @@
 <mapper namespace="com.example.nanqiao.dao.mapper.ActivityApplyStatisticsMapper">
   <resultMap id="BaseResultMap" type="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDO">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
     <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
     <result column="male_number" jdbcType="INTEGER" property="maleNumber" />
     <result column="female_number" jdbcType="INTEGER" property="femaleNumber" />
@@ -116,7 +116,7 @@
       female_number, apply_number, apply_success_number, 
       version, gmt_create, gmt_modified, 
       age_range)
-    values (#{activityId,jdbcType=BIGINT}, #{activityName,jdbcType=VARCHAR}, #{maleNumber,jdbcType=INTEGER}, 
+    values (#{activityId,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, #{maleNumber,jdbcType=INTEGER}, 
       #{femaleNumber,jdbcType=INTEGER}, #{applyNumber,jdbcType=INTEGER}, #{applySuccessNumber,jdbcType=INTEGER}, 
       #{version,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
       #{ageRange,jdbcType=LONGVARCHAR})
@@ -157,7 +157,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="activityId != null">
-        #{activityId,jdbcType=BIGINT},
+        #{activityId,jdbcType=VARCHAR},
       </if>
       <if test="activityName != null">
         #{activityName,jdbcType=VARCHAR},
@@ -201,7 +201,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.activityId != null">
-        activity_id = #{record.activityId,jdbcType=BIGINT},
+        activity_id = #{record.activityId,jdbcType=VARCHAR},
       </if>
       <if test="record.activityName != null">
         activity_name = #{record.activityName,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update activity_apply_statistics
     set id = #{record.id,jdbcType=BIGINT},
-      activity_id = #{record.activityId,jdbcType=BIGINT},
+      activity_id = #{record.activityId,jdbcType=VARCHAR},
       activity_name = #{record.activityName,jdbcType=VARCHAR},
       male_number = #{record.maleNumber,jdbcType=INTEGER},
       female_number = #{record.femaleNumber,jdbcType=INTEGER},
@@ -255,7 +255,7 @@
   <update id="updateByExample" parameterType="map">
     update activity_apply_statistics
     set id = #{record.id,jdbcType=BIGINT},
-      activity_id = #{record.activityId,jdbcType=BIGINT},
+      activity_id = #{record.activityId,jdbcType=VARCHAR},
       activity_name = #{record.activityName,jdbcType=VARCHAR},
       male_number = #{record.maleNumber,jdbcType=INTEGER},
       female_number = #{record.femaleNumber,jdbcType=INTEGER},
