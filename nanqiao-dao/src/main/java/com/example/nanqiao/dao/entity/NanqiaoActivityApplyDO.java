@@ -8,7 +8,7 @@ public class NanqiaoActivityApplyDO implements Serializable {
 
     private String openId;
 
-    private Long activityId;
+    private String activityId;
 
     private String userName;
 
@@ -52,12 +52,12 @@ public class NanqiaoActivityApplyDO implements Serializable {
         this.openId = openId == null ? null : openId.trim();
     }
 
-    public Long getActivityId() {
+    public String getActivityId() {
         return activityId;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId == null ? null : activityId.trim();
     }
 
     public String getUserName() {

@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @Date: 2022/9/12
  **/
 public interface ActivityApplyStatisticsDAO {
-    ActivityApplyStatisticsDO selectApplyStatisticsByUk(Long activityId);
+    ActivityApplyStatisticsDO selectApplyStatisticsByUk(String activityId);
     /**
      * 记录统计数据
      */
     @Transactional
-    void recordActivityStatistics(Long activityId,String activityName,ActivityStatisticsBO activityStatisticsBO);
+    void recordActivityStatistics(String activityId,String activityName,ActivityStatisticsBO activityStatisticsBO);
 }

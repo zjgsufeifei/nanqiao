@@ -50,7 +50,7 @@ public enum NanQiaoErrorCode {
     /**
      * 活动已结束
      */
-    ACTIVITY_ENDED(310001, "活动已结束"),
+    ACTIVITY_STARTED(310001, "活动已开始"),
     /**
      * 已报名过该活动
      */
@@ -64,6 +64,10 @@ public enum NanQiaoErrorCode {
      * 当前参与人数已超过活动限制人数
      */
     EXCEED_ACTIVITY_NUMBER(310004, "当前参与人数已超过活动限制人数"),
+    /**
+     * 活动不存在
+     */
+    ACTIVITY_NOT_EXIST(310005,"活动不存在"),
     ;
 
 

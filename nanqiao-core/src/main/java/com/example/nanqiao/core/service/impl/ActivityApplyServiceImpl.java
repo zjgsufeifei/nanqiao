@@ -16,10 +16,12 @@ import com.example.nanqiao.dao.bo.ActivityApplyBO;
 import com.example.nanqiao.dao.bo.ActivityApplyUk;
 import com.example.nanqiao.dao.bo.ActivityStatisticsBO;
 import com.example.nanqiao.dao.entity.ActivityApplyStatisticsDO;
+import com.example.nanqiao.dao.entity.ActivityInfoDO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDO;
 import com.example.nanqiao.dao.entity.NanqiaoActivityApplyDOExample;
 import com.example.nanqiao.dao.mapper.NanqiaoActivityApplyMapper;
 import com.example.nanqiao.dao.repository.ActivityApplyStatisticsDAO;
+import com.example.nanqiao.dao.repository.ActivityInfoDAO;
 import com.example.nanqiao.dao.repository.NanqiaoActivityApplyDAO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +46,8 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
     private ActivityApplyStatisticsDAO activityApplyStatisticsDAO;
     @Resource
     private NanqiaoActivityApplyMapper nanqiaoActivityApplyMapper;
+    @Resource
+    private ActivityInfoDAO activityInfoDAO;
 
     @Override
     public void createApply(ApplyCreateRequest request) {
@@ -51,20 +55,18 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
             throw new BaseException(NanQiaoErrorCode.PARAM_ILLEGAL,"用户信息缺失");
         }
         MobileUtils.checkMobile(request.getPhone());
-        // TODO: 2022/9/10 查询活动信息
-        Date activityStartTime=new Date();
-        Date activityEndTime=new Date();
+        ActivityInfoDO activityInfoDO =activityInfoDAO.selectByUk(request.getActivityId());
+        if(Objects.isNull(activityInfoDO)){
+            throw new BaseException(NanQiaoErrorCode.ACTIVITY_NOT_EXIST);
+        }
+        Date activityStartTime=activityInfoDO.getStartTime();
         Date now=new Date();
-        if(now.before(activityStartTime)){
-            throw new BaseException(NanQiaoErrorCode.ACTIVITY_NOT_START);
+        if(activityStartTime.before(now)){
+            throw new BaseException(NanQiaoErrorCode.ACTIVITY_STARTED);
         }
-        if(activityEndTime.before(now)){
-            throw new BaseException(NanQiaoErrorCode.ACTIVITY_ENDED);
-        }
-        Long activityId= request.getActivityId();
-        // TODO: 2022/9/12 待补充name
-        String activityName="";
-        ActivityApplyUk activityApplyUk=ActivityApplyUk.builder().openId(request.getOpenId()).activityId(request.getActivityId()).build();
+        String activityId= activityInfoDO.getActivityId();
+        String activityName=activityInfoDO.getTitle();
+        ActivityApplyUk activityApplyUk=ActivityApplyUk.builder().openId(request.getOpenId()).activityId(activityId).build();
         List<NanqiaoActivityApplyDO> nanqiaoActivityApplyList=nanqiaoActivityApplyDAO.queryActivityApplyInfo(activityApplyUk);
         if(CollectionUtils.isNotEmpty(nanqiaoActivityApplyList)){
             throw new BaseException(NanQiaoErrorCode.ALREADY_APPLY_ACTIVITY);
@@ -87,10 +89,13 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
 
     @Override
     public void auditApply(ApplyAuditRequest request) {
-        Long activityId= request.getActivityId();
+        String activityId= request.getActivityId();
         String openId= request.getOpenId();
-        // TODO: 2022/9/11 查询活动信息
-        Date activityEndTime = new Date();
+        ActivityInfoDO activityInfoDO =activityInfoDAO.selectByUk(request.getActivityId());
+        if(Objects.isNull(activityInfoDO)){
+            throw new BaseException(NanQiaoErrorCode.ACTIVITY_NOT_EXIST);
+        }
+        Date activityStartTime = activityInfoDO.getStartTime();
         Integer limitNumber=0;
         String activityName="";
 
@@ -103,10 +108,10 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
             return;
         }
 
-        if (now.after(activityEndTime)) {
+        if (now.after(activityStartTime)) {
             nanqiaoActivityApplyDAO.updateApplyStatus(activityApplyUk, ActivityApplyStatusEnum.ACTIVITY_ENDED, request.getAuditor());
             //弹窗告知活动已结束
-            throw new BaseException(NanQiaoErrorCode.ACTIVITY_ENDED);
+            throw new BaseException(NanQiaoErrorCode.ACTIVITY_STARTED);
         }
 
         if(request.getForceAuditSuccess()==0){

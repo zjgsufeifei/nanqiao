@@ -11,7 +11,6 @@ import com.example.nanqiao.dao.repository.ActivityApplyStatisticsDAO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +28,7 @@ public class ActivityApplyStatisticsDAOImpl implements ActivityApplyStatisticsDA
     @Resource
     private ActivityApplyStatisticsManualMapper activityApplyStatisticsManualMapper;
     @Override
-    public ActivityApplyStatisticsDO selectApplyStatisticsByUk(Long activityId) {
+    public ActivityApplyStatisticsDO selectApplyStatisticsByUk(String activityId) {
         ActivityApplyStatisticsDOExample statisticsDOExample=new ActivityApplyStatisticsDOExample();
         statisticsDOExample.createCriteria().andActivityIdEqualTo(activityId);
         List<ActivityApplyStatisticsDO> activityApplyStatisticsList=activityApplyStatisticsMapper.selectByExample(statisticsDOExample);
@@ -38,7 +37,7 @@ public class ActivityApplyStatisticsDAOImpl implements ActivityApplyStatisticsDA
 
     @Override
     @Transactional(transactionManager = BusinessConstant.TRANSACTION_MANAGER_NAME)
-    public void recordActivityStatistics(Long activityId, String activityName, ActivityStatisticsBO activityStatisticsBO){
+    public void recordActivityStatistics(String activityId, String activityName, ActivityStatisticsBO activityStatisticsBO){
         ActivityApplyStatisticsDOExample statisticsDOExample=new ActivityApplyStatisticsDOExample();
         statisticsDOExample.createCriteria().andActivityIdEqualTo(activityId);
         List<ActivityApplyStatisticsDO> activityApplyStatisticsList=activityApplyStatisticsManualMapper.selectByActivityIdForUpdate(statisticsDOExample);

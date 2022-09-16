@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.nanqiao.dao.mapper.ActivityApplyStatisticsMapper">
-  <resultMap id="BaseResultMap" type="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDO">
+<mapper namespace="com.example.nanqiao.dao.mapper.ActivityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.nanqiao.dao.entity.ActivityInfoDO">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
-    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
-    <result column="male_number" jdbcType="INTEGER" property="maleNumber" />
-    <result column="female_number" jdbcType="INTEGER" property="femaleNumber" />
-    <result column="apply_number" jdbcType="INTEGER" property="applyNumber" />
-    <result column="apply_success_number" jdbcType="INTEGER" property="applySuccessNumber" />
-    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="desc_path" jdbcType="VARCHAR" property="descPath" />
+    <result column="content_path" jdbcType="VARCHAR" property="contentPath" />
+    <result column="attention" jdbcType="VARCHAR" property="attention" />
+    <result column="number_limit" jdbcType="INTEGER" property="numberLimit" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDO">
-    <result column="age_range" jdbcType="LONGVARCHAR" property="ageRange" />
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.nanqiao.dao.entity.ActivityInfoDO">
+    <result column="image_path" jdbcType="LONGVARCHAR" property="imagePath" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,13 +77,13 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, activity_id, activity_name, male_number, female_number, apply_number, apply_success_number, 
-    version, gmt_create, gmt_modified
+    id, activity_id, title, desc_path, content_path, attention, number_limit, address, 
+    start_time, gmt_create, gmt_modified, creator
   </sql>
   <sql id="Blob_Column_List">
-    age_range
+    image_path
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDOExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -89,7 +91,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from activity_apply_statistics
+    from activity_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -97,13 +99,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDOExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from activity_apply_statistics
+    from activity_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -111,39 +113,44 @@
       order by ${orderByClause}
     </if>
   </select>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDO" useGeneratedKeys="true">
-    insert into activity_apply_statistics (activity_id, activity_name, male_number, 
-      female_number, apply_number, apply_success_number, 
-      version, gmt_create, gmt_modified, 
-      age_range)
-    values (#{activityId,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, #{maleNumber,jdbcType=INTEGER}, 
-      #{femaleNumber,jdbcType=INTEGER}, #{applyNumber,jdbcType=INTEGER}, #{applySuccessNumber,jdbcType=INTEGER}, 
-      #{version,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{ageRange,jdbcType=LONGVARCHAR})
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDO" useGeneratedKeys="true">
+    insert into activity_info (activity_id, title, desc_path, 
+      content_path, attention, number_limit, 
+      address, start_time, gmt_create, 
+      gmt_modified, creator, image_path
+      )
+    values (#{activityId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{descPath,jdbcType=VARCHAR}, 
+      #{contentPath,jdbcType=VARCHAR}, #{attention,jdbcType=VARCHAR}, #{numberLimit,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{imagePath,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDO" useGeneratedKeys="true">
-    insert into activity_apply_statistics
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDO" useGeneratedKeys="true">
+    insert into activity_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="activityId != null">
         activity_id,
       </if>
-      <if test="activityName != null">
-        activity_name,
+      <if test="title != null">
+        title,
       </if>
-      <if test="maleNumber != null">
-        male_number,
+      <if test="descPath != null">
+        desc_path,
       </if>
-      <if test="femaleNumber != null">
-        female_number,
+      <if test="contentPath != null">
+        content_path,
       </if>
-      <if test="applyNumber != null">
-        apply_number,
+      <if test="attention != null">
+        attention,
       </if>
-      <if test="applySuccessNumber != null">
-        apply_success_number,
+      <if test="numberLimit != null">
+        number_limit,
       </if>
-      <if test="version != null">
-        version,
+      <if test="address != null">
+        address,
+      </if>
+      <if test="startTime != null">
+        start_time,
       </if>
       <if test="gmtCreate != null">
         gmt_create,
@@ -151,31 +158,37 @@
       <if test="gmtModified != null">
         gmt_modified,
       </if>
-      <if test="ageRange != null">
-        age_range,
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="imagePath != null">
+        image_path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="activityId != null">
         #{activityId,jdbcType=VARCHAR},
       </if>
-      <if test="activityName != null">
-        #{activityName,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
-      <if test="maleNumber != null">
-        #{maleNumber,jdbcType=INTEGER},
+      <if test="descPath != null">
+        #{descPath,jdbcType=VARCHAR},
       </if>
-      <if test="femaleNumber != null">
-        #{femaleNumber,jdbcType=INTEGER},
+      <if test="contentPath != null">
+        #{contentPath,jdbcType=VARCHAR},
       </if>
-      <if test="applyNumber != null">
-        #{applyNumber,jdbcType=INTEGER},
+      <if test="attention != null">
+        #{attention,jdbcType=VARCHAR},
       </if>
-      <if test="applySuccessNumber != null">
-        #{applySuccessNumber,jdbcType=INTEGER},
+      <if test="numberLimit != null">
+        #{numberLimit,jdbcType=INTEGER},
       </if>
-      <if test="version != null">
-        #{version,jdbcType=INTEGER},
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
@@ -183,19 +196,22 @@
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=TIMESTAMP},
       </if>
-      <if test="ageRange != null">
-        #{ageRange,jdbcType=LONGVARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null">
+        #{imagePath,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDOExample" resultType="java.lang.Long">
-    select count(*) from activity_apply_statistics
+  <select id="countByExample" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultType="java.lang.Long">
+    select count(*) from activity_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update activity_apply_statistics
+    update activity_info
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -203,23 +219,26 @@
       <if test="record.activityId != null">
         activity_id = #{record.activityId,jdbcType=VARCHAR},
       </if>
-      <if test="record.activityName != null">
-        activity_name = #{record.activityName,jdbcType=VARCHAR},
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.maleNumber != null">
-        male_number = #{record.maleNumber,jdbcType=INTEGER},
+      <if test="record.descPath != null">
+        desc_path = #{record.descPath,jdbcType=VARCHAR},
       </if>
-      <if test="record.femaleNumber != null">
-        female_number = #{record.femaleNumber,jdbcType=INTEGER},
+      <if test="record.contentPath != null">
+        content_path = #{record.contentPath,jdbcType=VARCHAR},
       </if>
-      <if test="record.applyNumber != null">
-        apply_number = #{record.applyNumber,jdbcType=INTEGER},
+      <if test="record.attention != null">
+        attention = #{record.attention,jdbcType=VARCHAR},
       </if>
-      <if test="record.applySuccessNumber != null">
-        apply_success_number = #{record.applySuccessNumber,jdbcType=INTEGER},
+      <if test="record.numberLimit != null">
+        number_limit = #{record.numberLimit,jdbcType=INTEGER},
       </if>
-      <if test="record.version != null">
-        version = #{record.version,jdbcType=INTEGER},
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -227,8 +246,11 @@
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.ageRange != null">
-        age_range = #{record.ageRange,jdbcType=LONGVARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imagePath != null">
+        image_path = #{record.imagePath,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -236,39 +258,43 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
-    update activity_apply_statistics
+    update activity_info
     set id = #{record.id,jdbcType=BIGINT},
       activity_id = #{record.activityId,jdbcType=VARCHAR},
-      activity_name = #{record.activityName,jdbcType=VARCHAR},
-      male_number = #{record.maleNumber,jdbcType=INTEGER},
-      female_number = #{record.femaleNumber,jdbcType=INTEGER},
-      apply_number = #{record.applyNumber,jdbcType=INTEGER},
-      apply_success_number = #{record.applySuccessNumber,jdbcType=INTEGER},
-      version = #{record.version,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      desc_path = #{record.descPath,jdbcType=VARCHAR},
+      content_path = #{record.contentPath,jdbcType=VARCHAR},
+      attention = #{record.attention,jdbcType=VARCHAR},
+      number_limit = #{record.numberLimit,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
-      age_range = #{record.ageRange,jdbcType=LONGVARCHAR}
+      creator = #{record.creator,jdbcType=VARCHAR},
+      image_path = #{record.imagePath,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update activity_apply_statistics
+    update activity_info
     set id = #{record.id,jdbcType=BIGINT},
       activity_id = #{record.activityId,jdbcType=VARCHAR},
-      activity_name = #{record.activityName,jdbcType=VARCHAR},
-      male_number = #{record.maleNumber,jdbcType=INTEGER},
-      female_number = #{record.femaleNumber,jdbcType=INTEGER},
-      apply_number = #{record.applyNumber,jdbcType=INTEGER},
-      apply_success_number = #{record.applySuccessNumber,jdbcType=INTEGER},
-      version = #{record.version,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      desc_path = #{record.descPath,jdbcType=VARCHAR},
+      content_path = #{record.contentPath,jdbcType=VARCHAR},
+      attention = #{record.attention,jdbcType=VARCHAR},
+      number_limit = #{record.numberLimit,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDOExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -276,7 +302,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from activity_apply_statistics
+    from activity_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -284,13 +310,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExampleWithRowbounds" parameterType="com.example.nanqiao.dao.entity.ActivityApplyStatisticsDOExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="com.example.nanqiao.dao.entity.ActivityInfoDOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from activity_apply_statistics
+    from activity_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
