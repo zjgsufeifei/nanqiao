@@ -31,7 +31,7 @@ public class ActivityInfoDAOImpl implements ActivityInfoDAO {
     public ActivityInfoDO selectByUk(String activityId) {
         ActivityInfoDOExample activityInfoDOExample=new ActivityInfoDOExample();
         activityInfoDOExample.createCriteria().andActivityIdEqualTo(activityId);
-        List<ActivityInfoDO> activityInfoList=activityInfoMapper.selectByExample(activityInfoDOExample);
+        List<ActivityInfoDO> activityInfoList=activityInfoMapper.selectByExampleWithBLOBs(activityInfoDOExample);
         return CollectionUtils.isEmpty(activityInfoList)?null:activityInfoList.get(0);
     }
 }

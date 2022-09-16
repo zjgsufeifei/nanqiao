@@ -63,26 +63,8 @@
 <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
 <!--        </table>-->
 
-        <table tableName="activity_apply_statistics" mapperName="ActivityApplyStatisticsMapper"
-               domainObjectName="ActivityApplyStatisticsDO"
-               enableInsert="true"
-               enableSelectByExample="true"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableUpdateByPrimaryKey="false"
-               enableSelectByPrimaryKey="false"
-               enableDeleteByPrimaryKey="false"
-               enableDeleteByExample="false">
-            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
-        </table>
-
-<!--        <table tableName="content">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
-<!--            <columnOverride column="is_deleted" javaType="Integer" jdbcType="TINYINT"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="activity_info" mapperName="ActivityInfoMapper"-->
-<!--               domainObjectName="ActivityInfoDO"-->
+<!--        <table tableName="activity_apply_statistics" mapperName="ActivityApplyStatisticsMapper"-->
+<!--               domainObjectName="ActivityApplyStatisticsDO"-->
 <!--               enableInsert="true"-->
 <!--               enableSelectByExample="true"-->
 <!--               enableCountByExample="true"-->
@@ -93,5 +75,23 @@
 <!--               enableDeleteByExample="false">-->
 <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
 <!--        </table>-->
+
+<!--        <table tableName="content">-->
+<!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+<!--            <columnOverride column="is_deleted" javaType="Integer" jdbcType="TINYINT"/>-->
+<!--        </table>-->
+
+        <table tableName="activity_info" mapperName="ActivityInfoMapper"
+               domainObjectName="ActivityInfoDO"
+               enableInsert="true"
+               enableSelectByExample="true"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableUpdateByPrimaryKey="false"
+               enableSelectByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableDeleteByExample="false">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

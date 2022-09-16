@@ -1,10 +1,13 @@
 package com.example.nanqiao.common.request.activity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: coco
@@ -27,7 +30,7 @@ public class ActivityCreateRequest implements Serializable {
     /**
      * 图片存储路径
      */
-    private String imagePath;
+    private List<String> imagePathList;
 
     /**
      * 活动介绍内容存储路径
@@ -40,9 +43,9 @@ public class ActivityCreateRequest implements Serializable {
     private String contentPath;
 
     /**
-     * 注意事项存储路径
+     * 注意事项
      */
-    private String attentionPath;
+    private String attention;
 
     /**
      * 人数限制
@@ -54,8 +57,8 @@ public class ActivityCreateRequest implements Serializable {
     @NotNull(message = "活动地址不能为空")
     private String address;
     /**
-     * 活动开始时间
+     * 活动开始时间 毫秒时间戳
      */
     @NotNull(message = "活动开始时间不能为空")
-    private Date startTime;
+    private Long startTime;
 }

@@ -13,11 +13,17 @@ public interface ActivityInfoMapper {
 
     int insertSelective(ActivityInfoDO record);
 
+    List<ActivityInfoDO> selectByExampleWithBLOBsWithRowbounds(ActivityInfoDOExample example, RowBounds rowBounds);
+
+    List<ActivityInfoDO> selectByExampleWithBLOBs(ActivityInfoDOExample example);
+
     List<ActivityInfoDO> selectByExampleWithRowbounds(ActivityInfoDOExample example, RowBounds rowBounds);
 
     List<ActivityInfoDO> selectByExample(ActivityInfoDOExample example);
 
     int updateByExampleSelective(@Param("record") ActivityInfoDO record, @Param("example") ActivityInfoDOExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") ActivityInfoDO record, @Param("example") ActivityInfoDOExample example);
 
     int updateByExample(@Param("record") ActivityInfoDO record, @Param("example") ActivityInfoDOExample example);
 }

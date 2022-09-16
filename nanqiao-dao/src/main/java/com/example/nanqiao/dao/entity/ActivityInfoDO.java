@@ -10,13 +10,11 @@ public class ActivityInfoDO implements Serializable {
 
     private String title;
 
-    private String imagePath;
-
     private String descPath;
 
     private String contentPath;
 
-    private String attentionPath;
+    private String attention;
 
     private Integer numberLimit;
 
@@ -29,6 +27,8 @@ public class ActivityInfoDO implements Serializable {
     private Date gmtModified;
 
     private String creator;
+
+    private String imagePath;
 
     private static final long serialVersionUID = 1L;
 
@@ -56,14 +56,6 @@ public class ActivityInfoDO implements Serializable {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath == null ? null : imagePath.trim();
-    }
-
     public String getDescPath() {
         return descPath;
     }
@@ -80,12 +72,12 @@ public class ActivityInfoDO implements Serializable {
         this.contentPath = contentPath == null ? null : contentPath.trim();
     }
 
-    public String getAttentionPath() {
-        return attentionPath;
+    public String getAttention() {
+        return attention;
     }
 
-    public void setAttentionPath(String attentionPath) {
-        this.attentionPath = attentionPath == null ? null : attentionPath.trim();
+    public void setAttention(String attention) {
+        this.attention = attention == null ? null : attention.trim();
     }
 
     public Integer getNumberLimit() {
@@ -134,5 +126,13 @@ public class ActivityInfoDO implements Serializable {
 
     public void setCreator(String creator) {
         this.creator = creator == null ? null : creator.trim();
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath == null ? null : imagePath.trim();
     }
 }

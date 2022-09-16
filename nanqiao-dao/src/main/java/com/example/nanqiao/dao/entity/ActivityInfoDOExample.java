@@ -305,76 +305,6 @@ public class ActivityInfoDOExample {
             return (Criteria) this;
         }
 
-        public Criteria andImagePathIsNull() {
-            addCriterion("image_path is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathIsNotNull() {
-            addCriterion("image_path is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathEqualTo(String value) {
-            addCriterion("image_path =", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathNotEqualTo(String value) {
-            addCriterion("image_path <>", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathGreaterThan(String value) {
-            addCriterion("image_path >", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathGreaterThanOrEqualTo(String value) {
-            addCriterion("image_path >=", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathLessThan(String value) {
-            addCriterion("image_path <", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathLessThanOrEqualTo(String value) {
-            addCriterion("image_path <=", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathLike(String value) {
-            addCriterion("image_path like", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathNotLike(String value) {
-            addCriterion("image_path not like", value, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathIn(List<String> values) {
-            addCriterion("image_path in", values, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathNotIn(List<String> values) {
-            addCriterion("image_path not in", values, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathBetween(String value1, String value2) {
-            addCriterion("image_path between", value1, value2, "imagePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andImagePathNotBetween(String value1, String value2) {
-            addCriterion("image_path not between", value1, value2, "imagePath");
-            return (Criteria) this;
-        }
-
         public Criteria andDescPathIsNull() {
             addCriterion("desc_path is null");
             return (Criteria) this;
@@ -515,73 +445,73 @@ public class ActivityInfoDOExample {
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathIsNull() {
-            addCriterion("attention_path is null");
+        public Criteria andAttentionIsNull() {
+            addCriterion("attention is null");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathIsNotNull() {
-            addCriterion("attention_path is not null");
+        public Criteria andAttentionIsNotNull() {
+            addCriterion("attention is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathEqualTo(String value) {
-            addCriterion("attention_path =", value, "attentionPath");
+        public Criteria andAttentionEqualTo(String value) {
+            addCriterion("attention =", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathNotEqualTo(String value) {
-            addCriterion("attention_path <>", value, "attentionPath");
+        public Criteria andAttentionNotEqualTo(String value) {
+            addCriterion("attention <>", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathGreaterThan(String value) {
-            addCriterion("attention_path >", value, "attentionPath");
+        public Criteria andAttentionGreaterThan(String value) {
+            addCriterion("attention >", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathGreaterThanOrEqualTo(String value) {
-            addCriterion("attention_path >=", value, "attentionPath");
+        public Criteria andAttentionGreaterThanOrEqualTo(String value) {
+            addCriterion("attention >=", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathLessThan(String value) {
-            addCriterion("attention_path <", value, "attentionPath");
+        public Criteria andAttentionLessThan(String value) {
+            addCriterion("attention <", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathLessThanOrEqualTo(String value) {
-            addCriterion("attention_path <=", value, "attentionPath");
+        public Criteria andAttentionLessThanOrEqualTo(String value) {
+            addCriterion("attention <=", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathLike(String value) {
-            addCriterion("attention_path like", value, "attentionPath");
+        public Criteria andAttentionLike(String value) {
+            addCriterion("attention like", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathNotLike(String value) {
-            addCriterion("attention_path not like", value, "attentionPath");
+        public Criteria andAttentionNotLike(String value) {
+            addCriterion("attention not like", value, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathIn(List<String> values) {
-            addCriterion("attention_path in", values, "attentionPath");
+        public Criteria andAttentionIn(List<String> values) {
+            addCriterion("attention in", values, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathNotIn(List<String> values) {
-            addCriterion("attention_path not in", values, "attentionPath");
+        public Criteria andAttentionNotIn(List<String> values) {
+            addCriterion("attention not in", values, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathBetween(String value1, String value2) {
-            addCriterion("attention_path between", value1, value2, "attentionPath");
+        public Criteria andAttentionBetween(String value1, String value2) {
+            addCriterion("attention between", value1, value2, "attention");
             return (Criteria) this;
         }
 
-        public Criteria andAttentionPathNotBetween(String value1, String value2) {
-            addCriterion("attention_path not between", value1, value2, "attentionPath");
+        public Criteria andAttentionNotBetween(String value1, String value2) {
+            addCriterion("attention not between", value1, value2, "attention");
             return (Criteria) this;
         }
 

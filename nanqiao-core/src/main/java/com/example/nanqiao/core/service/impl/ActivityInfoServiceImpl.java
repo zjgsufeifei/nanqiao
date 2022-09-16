@@ -1,5 +1,6 @@
 package com.example.nanqiao.core.service.impl;
 
+import com.alibaba.fastjson2.JSON;
 import com.example.nanqiao.common.request.activity.ActivityCreateRequest;
 import com.example.nanqiao.common.request.activity.ActivityDetailInfoRequest;
 import com.example.nanqiao.common.response.activity.CreateActivityResponse;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -26,13 +28,13 @@ public class ActivityInfoServiceImpl implements ActivityInfoService {
         ActivityInfoDO initActivityInfo=new ActivityInfoDO();
         initActivityInfo.setActivityId(UUID.randomUUID().toString());
         initActivityInfo.setTitle(request.getTitle());
-        initActivityInfo.setImagePath(request.getImagePath());
+        initActivityInfo.setImagePath(JSON.toJSONString(request.getImagePathList()));
         initActivityInfo.setDescPath(request.getDescPath());
         initActivityInfo.setContentPath(request.getContentPath());
-        initActivityInfo.setAttentionPath(request.getAttentionPath());
+        initActivityInfo.setAttention(request.getAttention());
         initActivityInfo.setNumberLimit(request.getNumberLimit());
         initActivityInfo.setAddress(request.getAddress());
-        initActivityInfo.setStartTime(request.getStartTime());
+        initActivityInfo.setStartTime(new Date(request.getStartTime()));
         initActivityInfo.setCreator(request.getCreator());
         activityInfoDAO.createActivityInfo(initActivityInfo);
         return CreateActivityResponse.builder().activityId(initActivityInfo.getActivityId()).build();
